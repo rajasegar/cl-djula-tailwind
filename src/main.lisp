@@ -2,11 +2,12 @@
   (:use :cl))
 (in-package :cl-djula-tailwind)
 
-(defun parse-template-string (path)
-    (djula::parse-template-string (uiop::read-file-string (merge-pathnames path *template-directory*))))
-
+(defun parse-template-string (path dir)
+  "Parse Djula template from the given path"
+    (djula::parse-template-string (uiop::read-file-string (merge-pathnames path dir))))
 
 (defun get-markup (template)
+  "Get the HTML markup from the template content"
     (remove-duplicates
     (loop for l in template 
             for x = (first l)
@@ -16,12 +17,14 @@
     :test #'string=))
 
 (defun find-class-attrs (html)
+  "Find the class attribute values"
 (car (loop for l in html
          for x = (ppcre:all-matches-as-strings  "class=\"([^\"]*)\"" l) 
                 when x
          collect x)))
 
 (defun replace-class-keyword (props)
+  "Remove the class keywords and extra quotes"
   (loop for l in props
         for x = (ppcre:regex-replace-all "class=" l "")
         for y = (ppcre:regex-replace-all "\\\"" x "")
@@ -44,6 +47,7 @@
           while j) :test #'string=))
 
 (defun get-classnames (markup)
+  "Get the list of Tailwind class names as a list"
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
 (defparameter *tailwind* '(("p-2" . ((".p-2" :padding "2px")))
@@ -54,8 +58,9 @@
                            ("text-italic" . ((".text-italic" :font-style "italic")))
                            ))
 
-(defun get-stylesheet (file)
-  (let ((template (parse-template-string #P"index.html")))
+(defun get-stylesheet (file dir)
+  "Generate the stylesheet based on tailwind class definitions"
+  (let ((template (parse-template-string file dir)))
 
     (let ((markup (get-markup template)))
 
@@ -66,16 +71,5 @@
 
 
 
-(let ((template (parse-template-string #P"index.html")))
-
- (let ((markup (get-markup template)))
-   ;; (print markup)
-
-   (print (get-classnames markup))
-   ;; Match regex pattern
-   ;; collect tw utility class names
-   ;; generate css for classes
-   ;; inject stylesheet into the head
-
-   )
-  )
+(defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
+(print (get-stylesheet #P"index.html" *template-directory*))
