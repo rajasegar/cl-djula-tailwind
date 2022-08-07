@@ -46,6 +46,25 @@
 (defun get-classnames (markup)
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
+(defparameter *tailwind* '(("p-2" . ((".p-2" :padding "2px")))
+                           ("m-2" . ((".m-2" :margin "2px")))
+                           ("text-xl" . ((".text-xl" :font-size "1em")))
+                           ("text-2xl" . ((".text-2xl" :font-size "2em")))
+                           ("text-bold" . ((".text-bold" :font-weight "bold")))
+                           ("text-italic" . ((".text-italic" :font-style "italic")))
+                           ))
+
+(defun get-stylesheet (file)
+  (let ((template (parse-template-string #P"index.html")))
+
+    (let ((markup (get-markup template)))
+
+      (join-string-list (loop for c in  (get-classnames markup)
+                              for key = (assoc c *tailwind* :test #'string=)
+                              when key
+                                collect (cl-css:css (cdr key)))))))
+
+
 
 (let ((template (parse-template-string #P"index.html")))
 

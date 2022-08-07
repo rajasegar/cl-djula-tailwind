@@ -2,7 +2,9 @@
   :version "0.1.0"
   :author "Rajasegar Chandran"
   :license ""
-  :depends-on ()
+  :depends-on ("cl-css"
+               "cl-ppcre"
+               "djula")
   :components ((:module "src"
                 :components
                 ((:file "main"))))
