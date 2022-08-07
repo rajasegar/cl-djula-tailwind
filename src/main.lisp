@@ -1,5 +1,9 @@
 (defpackage cl-djula-tailwind
-  (:use :cl))
+  (:use :cl
+   :cl-djula-tailwind.layout
+        :cl-djula-tailwind.spacing
+        :cl-djula-tailwind.typography))
+
 (in-package :cl-djula-tailwind)
 
 (defun parse-template-string (path dir)
@@ -50,13 +54,16 @@
   "Get the list of Tailwind class names as a list"
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
-(defparameter *tailwind* '(("p-2" . ((".p-2" :padding "2px")))
-                           ("m-2" . ((".m-2" :margin "2px")))
-                           ("text-xl" . ((".text-xl" :font-size "1em")))
-                           ("text-2xl" . ((".text-2xl" :font-size "2em")))
-                           ("text-bold" . ((".text-bold" :font-weight "bold")))
-                           ("text-italic" . ((".text-italic" :font-style "italic")))
-                           ))
+
+(defparameter *tailwind* (append
+                          *aspect-ratio*
+                          *display*
+                          *margin*
+                          *padding*
+                          *font-sizes*
+                          *font-styles*
+                          *font-weights*
+                          ))
 
 (defun get-stylesheet (file dir)
   "Generate the stylesheet based on tailwind class definitions"

@@ -7,7 +7,11 @@
                "djula")
   :components ((:module "src"
                 :components
-                ((:file "main"))))
+                ((:file "main" :depends-on ("tailwind-layout" "tailwind-spacing" "tailwind-typography"))
+                 (:file "tailwind-layout")
+                 (:file "tailwind-spacing")
+                 (:file "tailwind-typography")
+                 )))
   :description ""
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))
 
