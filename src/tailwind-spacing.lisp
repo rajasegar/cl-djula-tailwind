@@ -1,7 +1,6 @@
 (defpackage cl-djula-tailwind.spacing
   (:use :cl)
-  (:export :*margin*
-           :*padding*))
+  (:export :*spacing*))
 
 (in-package cl-djula-tailwind.spacing)
 
@@ -23,3 +22,5 @@
                    ("m-3" . ((".m-3" :margin "0.75rem")))
                    ("m-4" . ((".m-4" :margin "1rem")))
                    ))
+
+(defvar *spacing* (append *padding* *margin*))

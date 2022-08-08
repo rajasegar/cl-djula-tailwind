@@ -1,7 +1,6 @@
 (defpackage cl-djula-tailwind.layout
   (:use :cl)
-  (:export :*aspect-ratio*
-           :*display*))
+  (:export :*layout*))
 
 (in-package cl-djula-tailwind.layout)
 
@@ -18,3 +17,5 @@
                     ("inline-table" . ((".inline-table" :display "inline-table")))
                     ("hidden" . ((".hidden" :display "none")))
                          ))
+
+(defvar *layout* (append *aspect-ratio* *display*))

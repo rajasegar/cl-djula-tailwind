@@ -56,13 +56,9 @@
   
 
 (defparameter *tailwind* (append
-                          *aspect-ratio*
-                          *display*
-                          *margin*
-                          *padding*
-                          *font-sizes*
-                          *font-styles*
-                          *font-weights*
+                          *layout*
+                          *spacing*
+                          *typography*
                           ))
 
 (defun get-stylesheet (file dir)
