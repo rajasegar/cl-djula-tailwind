@@ -57,6 +57,216 @@
     ("800" . "#27272a")
     ("900" . "#18181b")))
 
+(defvar *neutral-colors* '(("50" . "#fafafa")
+    ("100" . "#f5f5f5")
+    ("200" . "#e5e5e5")
+    ("300" . "#d4d4d4")
+    ("400" . "#a3a3a3")
+    ("500" . "#737373")
+    ("600" . "#525252")
+    ("700" . "#404040")
+    ("800" . "#262626")
+    ("900" . "#171717")))
+
+(defvar *stone-colors* '(("50" . "#fafaf9")
+    ("100" . "#f5f5f4")
+    ("200" . "#e7e5e4")
+    ("300" . "#d6d3d1")
+    ("400" . "#a8a29e")
+    ("500" . "#78716c")
+    ("600" . "#57534e")
+    ("700" . "#44403c")
+    ("800" . "#292524")
+    ("900" . "#1c1917")))
+
+(defvar *red-colors* '(("50" . "#fef2f2")
+    ("100" . "#fee2e2")
+    ("200" . "#fecaca")
+    ("300" . "#fca5a5")
+    ("400" . "#f87171")
+    ("500" . "#ef4444")
+    ("600" . "#dc2626")
+    ("700" . "#b91c1c")
+    ("800" . "#991b1b")
+    ("900" . "#7f1d1d")))
+
+(defvar *orange-colors* '(("50" . "#fff7ed")
+    ("100" . "#ffedd5")
+    ("200" . "#fed7aa")
+    ("300" . "#fdba74")
+    ("400" . "#fb923c")
+    ("500" . "#f97316")
+    ("600" . "#ea580c")
+    ("700" . "#c2410c")
+    ("800" . "#9a3412")
+    ("900" . "#7c2d12")))
+
+(defvar *amber-colors* '(("50" . "#fffbeb")
+    ("100" . "#fef3c7")
+    ("200" . "#fde68a")
+    ("300" . "#fcd34d")
+    ("400" . "#fbbf24")
+    ("500" . "#f59e0b")
+    ("600" . "#d97706")
+    ("700" . "#b45309")
+    ("800" . "#92400e")
+    ("900" . "#78350f")))
+
+(defvar *yellow-colors* '(("50" . "#fefce8")
+    ("100" . "#fef9c3")
+    ("200" . "#fef08a")
+    ("300" . "#fde047")
+    ("400" . "#facc15")
+    ("500" . "#eab308")
+    ("600" . "#ca8a04")
+    ("700" . "#a16207")
+    ("800" . "#854d0e")
+    ("900" . "#713f12")))
+
+(defvar *lime-colors* '(("50" . "#f7fee7")
+    ("100" . "#ecfccb")
+    ("200" . "#d9f99d")
+    ("300" . "#bef264")
+    ("400" . "#a3e635")
+    ("500" . "#84cc16")
+    ("600" . "#65a30d")
+    ("700" . "#4d7c0f")
+    ("800" . "#3f6212")
+    ("900" . "#365314")))
+
+(defvar *green-colors* '(("50" . "#f0fdf4")
+    ("100" . "#dcfce7")
+    ("200" . "#bbf7d0")
+    ("300" . "#86efac")
+    ("400" . "#4ade80")
+    ("500" . "#22c55e")
+    ("600" . "#16a34a")
+    ("700" . "#15803d")
+    ("800" . "#166534")
+    ("900" . "#14532d")))
+
+(defvar *emerald-colors* '(("50" . "#ecfdf5")
+    ("100" . "#d1fae5")
+    ("200" . "#a7f3d0")
+    ("300" . "#6ee7b7")
+    ("400" . "#34d399")
+    ("500" . "#10b981")
+    ("600" . "#059669")
+    ("700" . "#047857")
+    ("800" . "#065f46")
+    ("900" . "#064e3b")))
+
+(defvar *teal-colors* '(("50" . "#f0fdfa")
+    ("100" . "#ccfbf1")
+    ("200" . "#99f6e4")
+    ("300" . "#5eead4")
+    ("400" . "#2dd4bf")
+    ("500" . "#14b8a6")
+    ("600" . "#0d9488")
+    ("700" . "#0f766e")
+    ("800" . "#115e59")
+    ("900" . "#134e4a")))
+
+(defvar *cyan-colors* '(("50" . "#ecfeff")
+    ("100" . "#cffafe")
+    ("200" . "#a5f3fc")
+    ("300" . "#67e8f9")
+    ("400" . "#22d3ee")
+    ("500" . "#06b6d4")
+    ("600" . "#0891b2")
+    ("700" . "#0e7490")
+    ("800" . "#155e75")
+    ("900" . "#164e63")))
+
+(defvar *sky-colors* '(("50" . "#f0f9ff")
+    ("100" . "#e0f2fe")
+    ("200" . "#bae6fd")
+    ("300" . "#7dd3fc")
+    ("400" . "#38bdf8")
+    ("500" . "#0ea5e9")
+    ("600" . "#0284c7")
+    ("700" . "#0369a1")
+    ("800" . "#075985")
+    ("900" . "#0c4a6e")))
+
+(defvar *blue-colors* '(("50" . "#eff6ff")
+    ("100" . "#dbeafe")
+    ("200" . "#bfdbfe")
+    ("300" . "#93c5fd")
+    ("400" . "#60a5fa")
+    ("500" . "#3b82f6")
+    ("600" . "#2563eb")
+    ("700" . "#1d4ed8")
+    ("800" . "#1e40af")
+    ("900" . "#1e3a8a")))
+
+(defvar *indigo-colors* '(("50" . "#eef2ff")
+    ("100" . "#e0e7ff")
+    ("200" . "#c7d2fe")
+    ("300" . "#a5b4fc")
+    ("400" . "#818cf8")
+    ("500" . "#6366f1")
+    ("600" . "#4f46e5")
+    ("700" . "#4338ca")
+    ("800" . "#3730a3")
+    ("900" . "#312e81")))
+
+(defvar *violet-colors* '(("50" . "#f5f3ff")
+    ("100" . "#ede9fe")
+    ("200" . "#ddd6fe")
+    ("300" . "#c4b5fd")
+    ("400" . "#a78bfa")
+    ("500" . "#8b5cf6")
+    ("600" . "#7c3aed")
+    ("700" . "#6d28d9")
+    ("800" . "#5b21b6")
+    ("900" . "#4c1d95")))
+
+(defvar *purple-colors* '(("50" . "#faf5ff")
+    ("100" . "#f3e8ff")
+    ("200" . "#e9d5ff")
+    ("300" . "#d8b4fe")
+    ("400" . "#c084fc")
+    ("500" . "#a855f7")
+    ("600" . "#9333ea")
+    ("700" . "#7e22ce")
+    ("800" . "#6b21a8")
+    ("900" . "#581c87")))
+
+(defvar *fuchsia-colors* '(("50" . "#fdf4ff")
+    ("100" . "#fae8ff")
+    ("200" . "#f5d0fe")
+    ("300" . "#f0abfc")
+    ("400" . "#e879f9")
+    ("500" . "#d946ef")
+    ("600" . "#c026d3")
+    ("700" . "#a21caf")
+    ("800" . "#86198f")
+    ("900" . "#701a75")))
+
+(defvar *pink-colors* '(("50" . "#fdf2f8")
+    ("100" . "#fce7f3")
+    ("200" . "#fbcfe8")
+    ("300" . "#f9a8d4")
+    ("400" . "#f472b6")
+    ("500" . "#ec4899")
+    ("600" . "#db2777")
+    ("700" . "#be185d")
+    ("800" . "#9d174d")
+    ("900" . "#831843")))
+
+(defvar *rose-colors* '(("50" . "#fff1f2")
+    ("100" . "#ffe4e6")
+    ("200" . "#fecdd3")
+    ("300" . "#fda4af")
+    ("400" . "#fb7185")
+    ("500" . "#f43f5e")
+    ("600" . "#e11d48")
+    ("700" . "#be123c")
+    ("800" . "#9f1239")
+    ("900" . "#881337")))
+
+
 (defun get-list-key (prefix key)
 	(concatenate 'string prefix (write-to-string key)))
 
@@ -66,19 +276,110 @@
 (defun get-list (prefix key value)
 	`(,(get-list-key prefix key) . ((,(get-list-value prefix key value)))))
 
-;; (defvar *text-color-slate* '())
+(defun collect-colors (colors prefix)
+	(loop for i in colors
+				collect (get-list prefix (car i) (cdr i))))
 
-(defparameter *text-color-slate* (loop for i in *slate-colors*
-				collect (get-list "text-slate-" (car i) (cdr i))))
 
-(defparameter *text-color-gray* (loop for i in *gray-colors*
-				collect (get-list "text-gray-" (car i) (cdr i))))
+(defparameter *text-color-slate* (collect-colors *slate-colors* "text-slate-"))
+(defparameter *text-color-gray* (collect-colors *gray-colors* "text-gray-"))
+(defparameter *text-color-zinc* (collect-colors *zinc-colors* "text-zinc-"))
+(defparameter *text-color-neutral* (collect-colors *neutral-colors* "text-neutral-"))
+(defparameter *text-color-stone* (collect-colors *stone-colors* "text-stone-"))
+(defparameter *text-color-red* (collect-colors *red-colors* "text-red-"))
+(defparameter *text-color-orange* (collect-colors *orange-colors* "text-orange-"))
+(defparameter *text-color-amber* (collect-colors *amber-colors* "text-amber-"))
+(defparameter *text-color-yellow* (collect-colors *yellow-colors* "text-yellow-"))
+(defparameter *text-color-lime* (collect-colors *lime-colors* "text-lime-"))
+(defparameter *text-color-green* (collect-colors *green-colors* "text-green-"))
+(defparameter *text-color-emerald* (collect-colors *emerald-colors* "text-emerald-"))
+(defparameter *text-color-teal* (collect-colors *teal-colors* "text-teal-"))
+(defparameter *text-color-cyan* (collect-colors *cyan-colors* "text-cyan-"))
+(defparameter *text-color-sky* (collect-colors *sky-colors* "text-sky-"))
+(defparameter *text-color-blue* (collect-colors *blue-colors* "text-blue-"))
+(defparameter *text-color-indigo* (collect-colors *indigo-colors* "text-indigo-"))
+(defparameter *text-color-violet* (collect-colors *violet-colors* "text-violet-"))
+(defparameter *text-color-purple* (collect-colors *purple-colors* "text-purple-"))
+(defparameter *text-color-fuchsia* (collect-colors *fuchsia-colors* "text-fuchsia-"))
+(defparameter *text-color-pink* (collect-colors *pink-colors* "text-pink-"))
+(defparameter *text-color-rose* (collect-colors *rose-colors* "text-rose-"))
 
-(defparameter *text-color-zinc* (loop for i in *gray-colors*
-				collect (get-list "text-zinc-" (car i) (cdr i))))
-;; (print (get-list-key "text-slate-" "50"))
-;; (print (get-list-value "text-slate-" "50" "#fff"))
-;; (print (get-list "text-slate-" "50" "#fff"))
+
+(defparameter *bg-color-slate* (collect-colors *slate-colors* "bg-slate-"))
+(defparameter *bg-color-gray* (collect-colors *gray-colors* "bg-gray-"))
+(defparameter *bg-color-zinc* (collect-colors *zinc-colors* "bg-zinc-"))
+(defparameter *bg-color-neutral* (collect-colors *neutral-colors* "bg-neutral-"))
+(defparameter *bg-color-stone* (collect-colors *stone-colors* "bg-stone-"))
+(defparameter *bg-color-red* (collect-colors *red-colors* "bg-red-"))
+(defparameter *bg-color-orange* (collect-colors *orange-colors* "bg-orange-"))
+(defparameter *bg-color-amber* (collect-colors *amber-colors* "bg-amber-"))
+(defparameter *bg-color-yellow* (collect-colors *yellow-colors* "bg-yellow-"))
+(defparameter *bg-color-lime* (collect-colors *lime-colors* "bg-lime-"))
+(defparameter *bg-color-green* (collect-colors *green-colors* "bg-green-"))
+(defparameter *bg-color-emerald* (collect-colors *emerald-colors* "bg-emerald-"))
+(defparameter *bg-color-teal* (collect-colors *teal-colors* "bg-teal-"))
+(defparameter *bg-color-cyan* (collect-colors *cyan-colors* "bg-cyan-"))
+(defparameter *bg-color-sky* (collect-colors *sky-colors* "bg-sky-"))
+(defparameter *bg-color-blue* (collect-colors *blue-colors* "bg-blue-"))
+(defparameter *bg-color-indigo* (collect-colors *indigo-colors* "bg-indigo-"))
+(defparameter *bg-color-violet* (collect-colors *violet-colors* "bg-violet-"))
+(defparameter *bg-color-purple* (collect-colors *purple-colors* "bg-purple-"))
+(defparameter *bg-color-fuchsia* (collect-colors *fuchsia-colors* "bg-fuchsia-"))
+(defparameter *bg-color-pink* (collect-colors *pink-colors* "bg-pink-"))
+(defparameter *bg-color-rose* (collect-colors *rose-colors* "bg-rose-"))
+
 (print *text-color-zinc*)
 
-(defvar *typography* (append *font-sizes* *font-styles* *font-weights*))
+(defvar *typography* (append
+											*font-sizes*
+											*font-styles*
+											*font-weights*
+
+											;; text colors
+											*text-color-slate*
+											*text-color-gray*
+											*text-color-zinc*
+											*text-color-neutral*
+											*text-color-stone*
+											*text-color-red*
+											*text-color-orange*
+											*text-color-amber*
+											*text-color-yellow*
+											*text-color-lime*
+											*text-color-green*
+											*text-color-emerald*
+											*text-color-teal*
+											*text-color-cyan*
+											*text-color-sky*
+											*text-color-blue*
+											*text-color-indigo*
+											*text-color-violet*
+											*text-color-purple*
+											*text-color-fuchsia*
+											*text-color-pink*
+											*text-color-rose*
+
+											;; background colors
+											*bg-color-slate*
+											*bg-color-gray*
+											*bg-color-zinc*
+											*bg-color-neutral*
+											*bg-color-stone*
+											*bg-color-red*
+											*bg-color-orange*
+											*bg-color-amber*
+											*bg-color-yellow*
+											*bg-color-lime*
+											*bg-color-green*
+											*bg-color-emerald*
+											*bg-color-teal*
+											*bg-color-cyan*
+											*bg-color-sky*
+											*bg-color-blue*
+											*bg-color-indigo*
+											*bg-color-violet*
+											*bg-color-purple*
+											*bg-color-fuchsia*
+											*bg-color-pink*
+											*bg-color-rose*
+											))
