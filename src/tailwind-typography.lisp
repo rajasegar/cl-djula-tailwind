@@ -268,13 +268,13 @@
 
 
 (defun get-list-key (prefix key)
-	(concatenate 'string prefix (write-to-string key)))
+	(ppcre:regex-replace-all "\\\"" (concatenate 'string prefix (write-to-string key)) ""))
 
 (defun get-list-value (prefix key value)
-	`(,(concatenate 'string "." prefix (write-to-string key)) :color ,value))
+	(list (ppcre:regex-replace-all "\\\"" (concatenate 'string "." prefix (write-to-string key)) "") :color value))
 
 (defun get-list (prefix key value)
-	`(,(get-list-key prefix key) . ((,(get-list-value prefix key value)))))
+	`(,(get-list-key prefix key) . (,(get-list-value prefix key value))))
 
 (defun collect-colors (colors prefix)
 	(loop for i in colors
@@ -328,9 +328,8 @@
 (defparameter *bg-color-pink* (collect-colors *pink-colors* "bg-pink-"))
 (defparameter *bg-color-rose* (collect-colors *rose-colors* "bg-rose-"))
 
-(print *text-color-zinc*)
 
-(defvar *typography* (append
+(defparameter *typography* (append
 											*font-sizes*
 											*font-styles*
 											*font-weights*

@@ -1,23 +1,25 @@
 (defsystem "cl-djula-tailwind"
   :version "0.1.0"
   :author "Rajasegar Chandran"
-  :license ""
+  :license "MIT"
   :depends-on ("cl-css"
                "cl-ppcre"
                "djula")
   :components ((:module "src"
                 :components
-                ((:file "main" :depends-on ("tailwind-layout" "tailwind-spacing" "tailwind-typography"))
+                ((:file "main"
+									:depends-on ("tailwind-layout" "tailwind-spacing" "tailwind-typography" "tailwind-flexbox-grid"))
                  (:file "tailwind-layout")
                  (:file "tailwind-spacing")
                  (:file "tailwind-typography")
+                 (:file "tailwind-flexbox-grid")
                  )))
   :description ""
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))
 
 (defsystem "cl-djula-tailwind/tests"
   :author "Rajasegar Chandran"
-  :license ""
+  :license "MIT"
   :depends-on ("cl-djula-tailwind"
                "rove")
   :components ((:module "tests"

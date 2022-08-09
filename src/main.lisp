@@ -2,7 +2,8 @@
   (:use :cl
    :cl-djula-tailwind.layout
         :cl-djula-tailwind.spacing
-        :cl-djula-tailwind.typography))
+   :cl-djula-tailwind.typography)
+	(:export :get-stylesheet))
 
 (in-package :cl-djula-tailwind)
 
@@ -52,20 +53,23 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
+	(print (replace-class-keyword (find-class-attrs markup)))
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
 
 (defparameter *tailwind* (append
                           *layout*
                           *spacing*
-                          *typography*
-                          ))
+                          *typography*))
+(print *tailwind*)
 
 (defun get-stylesheet (file dir)
   "Generate the stylesheet based on tailwind class definitions"
   (let ((template (parse-template-string file dir)))
+		;; (print template)
 
     (let ((markup (get-markup template)))
+			;; (print markup)
 
       (join-string-list (loop for c in  (get-classnames markup)
                               for key = (assoc c *tailwind* :test #'string=)
@@ -74,5 +78,5 @@
 
 
 
-(defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
-(print (get-stylesheet #P"index.html" *template-directory*))
+;; (defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
+;; (print (get-stylesheet #P"index.html" *template-directory*))
