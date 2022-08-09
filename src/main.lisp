@@ -1,8 +1,9 @@
 (defpackage cl-djula-tailwind
   (:use :cl
    :cl-djula-tailwind.layout
-        :cl-djula-tailwind.spacing
-   :cl-djula-tailwind.typography)
+	 :cl-djula-tailwind.spacing
+   :cl-djula-tailwind.typography
+	 :cl-djula-tailwind.backgrounds)
 	(:export :get-stylesheet))
 
 (in-package :cl-djula-tailwind)
@@ -53,15 +54,17 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
-	(print (replace-class-keyword (find-class-attrs markup)))
+	;; (print (replace-class-keyword (find-class-attrs markup)))
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
 
 (defparameter *tailwind* (append
                           *layout*
                           *spacing*
-                          *typography*))
-(print *tailwind*)
+                          *typography*
+													*backgrounds*
+													))
+;; (print *tailwind*)
 
 (defun get-stylesheet (file dir)
   "Generate the stylesheet based on tailwind class definitions"
@@ -71,10 +74,10 @@
     (let ((markup (get-markup template)))
 			;; (print markup)
 
-      (join-string-list (loop for c in  (get-classnames markup)
+      (cl-minify-css:minify-css (join-string-list (loop for c in  (get-classnames markup)
                               for key = (assoc c *tailwind* :test #'string=)
                               when key
-                                collect (cl-css:css (cdr key)))))))
+                                collect (cl-css:css (cdr key))))))))
 
 
 

@@ -1,27 +1,9 @@
-(defpackage cl-djula-tailwind.typography
+(defpackage cl-djula-tailwind.backgrounds
   (:use :cl)
-  (:export :*typography*))
+  (:export :*backgrounds*))
 
-(in-package cl-djula-tailwind.typography)
+(in-package cl-djula-tailwind.backgrounds)
 
-(defvar *font-sizes* '(("text-xl" . ((".text-xl" :font-size "1.25rem" :line-height "1.75rem")))
-                         ("text-2xl" . ((".text-2xl" :font-size "1.5rem" :line-height "2rem")))
-                    ))
-
-
-(defvar *font-styles* '(("italic" . ((".italic" :font-style "italic")))
-                         ("non-italic" . ((".non-italic" :font-style "normal")))))
-
-(defvar *font-weights* '(("font-bold" . ((".fond-bold" :font-weight "700")))
-                         ("font-normal" . ((".font-normal" :font-style "400")))))
-
-(defvar *text-color* '(
-											 ("text-inherit" . ((".text-inherit" :color "inherit")))
-											 ("text-current" . ((".text-current" :color "currentColor")))
-											 ("text-transparent" . ((".text-transparent" :color "transparent")))
-											 ("text-black" . ((".text-black" :color "rgb(0,0,0)")))
-											 ("text-white" . ((".text-white" :color "rgb(255,255,255)")))
-											 ))
 
 (defvar *slate-colors* '(("50" . "#f8fafc")
     ("100" . "#f1f5f9")
@@ -271,7 +253,7 @@
 	(ppcre:regex-replace-all "\\\"" (concatenate 'string prefix (write-to-string key)) ""))
 
 (defun get-list-value (prefix key value)
-	(list (ppcre:regex-replace-all "\\\"" (concatenate 'string "." prefix (write-to-string key)) "") :color value))
+	(list (ppcre:regex-replace-all "\\\"" (concatenate 'string "." prefix (write-to-string key)) "") :background-color value))
 
 (defun get-list (prefix key value)
 	`(,(get-list-key prefix key) . (,(get-list-value prefix key value))))
@@ -280,57 +262,53 @@
 	(loop for i in colors
 				collect (get-list prefix (car i) (cdr i))))
 
+(defparameter *bg-color-slate* (collect-colors *slate-colors* "bg-slate-"))
+(defparameter *bg-color-gray* (collect-colors *gray-colors* "bg-gray-"))
+(defparameter *bg-color-zinc* (collect-colors *zinc-colors* "bg-zinc-"))
+(defparameter *bg-color-neutral* (collect-colors *neutral-colors* "bg-neutral-"))
+(defparameter *bg-color-stone* (collect-colors *stone-colors* "bg-stone-"))
+(defparameter *bg-color-red* (collect-colors *red-colors* "bg-red-"))
+(defparameter *bg-color-orange* (collect-colors *orange-colors* "bg-orange-"))
+(defparameter *bg-color-amber* (collect-colors *amber-colors* "bg-amber-"))
+(defparameter *bg-color-yellow* (collect-colors *yellow-colors* "bg-yellow-"))
+(defparameter *bg-color-lime* (collect-colors *lime-colors* "bg-lime-"))
+(defparameter *bg-color-green* (collect-colors *green-colors* "bg-green-"))
+(defparameter *bg-color-emerald* (collect-colors *emerald-colors* "bg-emerald-"))
+(defparameter *bg-color-teal* (collect-colors *teal-colors* "bg-teal-"))
+(defparameter *bg-color-cyan* (collect-colors *cyan-colors* "bg-cyan-"))
+(defparameter *bg-color-sky* (collect-colors *sky-colors* "bg-sky-"))
+(defparameter *bg-color-blue* (collect-colors *blue-colors* "bg-blue-"))
+(defparameter *bg-color-indigo* (collect-colors *indigo-colors* "bg-indigo-"))
+(defparameter *bg-color-violet* (collect-colors *violet-colors* "bg-violet-"))
+(defparameter *bg-color-purple* (collect-colors *purple-colors* "bg-purple-"))
+(defparameter *bg-color-fuchsia* (collect-colors *fuchsia-colors* "bg-fuchsia-"))
+(defparameter *bg-color-pink* (collect-colors *pink-colors* "bg-pink-"))
+(defparameter *bg-color-rose* (collect-colors *rose-colors* "bg-rose-"))
 
-(defparameter *text-color-slate* (collect-colors *slate-colors* "text-slate-"))
-(defparameter *text-color-gray* (collect-colors *gray-colors* "text-gray-"))
-(defparameter *text-color-zinc* (collect-colors *zinc-colors* "text-zinc-"))
-(defparameter *text-color-neutral* (collect-colors *neutral-colors* "text-neutral-"))
-(defparameter *text-color-stone* (collect-colors *stone-colors* "text-stone-"))
-(defparameter *text-color-red* (collect-colors *red-colors* "text-red-"))
-(defparameter *text-color-orange* (collect-colors *orange-colors* "text-orange-"))
-(defparameter *text-color-amber* (collect-colors *amber-colors* "text-amber-"))
-(defparameter *text-color-yellow* (collect-colors *yellow-colors* "text-yellow-"))
-(defparameter *text-color-lime* (collect-colors *lime-colors* "text-lime-"))
-(defparameter *text-color-green* (collect-colors *green-colors* "text-green-"))
-(defparameter *text-color-emerald* (collect-colors *emerald-colors* "text-emerald-"))
-(defparameter *text-color-teal* (collect-colors *teal-colors* "text-teal-"))
-(defparameter *text-color-cyan* (collect-colors *cyan-colors* "text-cyan-"))
-(defparameter *text-color-sky* (collect-colors *sky-colors* "text-sky-"))
-(defparameter *text-color-blue* (collect-colors *blue-colors* "text-blue-"))
-(defparameter *text-color-indigo* (collect-colors *indigo-colors* "text-indigo-"))
-(defparameter *text-color-violet* (collect-colors *violet-colors* "text-violet-"))
-(defparameter *text-color-purple* (collect-colors *purple-colors* "text-purple-"))
-(defparameter *text-color-fuchsia* (collect-colors *fuchsia-colors* "text-fuchsia-"))
-(defparameter *text-color-pink* (collect-colors *pink-colors* "text-pink-"))
-(defparameter *text-color-rose* (collect-colors *rose-colors* "text-rose-"))
 
-(defparameter *typography* (append
-											*font-sizes*
-											*font-styles*
-											*font-weights*
+(defparameter *backgrounds* (append
 
-											;; text colors
-											*text-color-slate*
-											*text-color-gray*
-											*text-color-zinc*
-											*text-color-neutral*
-											*text-color-stone*
-											*text-color-red*
-											*text-color-orange*
-											*text-color-amber*
-											*text-color-yellow*
-											*text-color-lime*
-											*text-color-green*
-											*text-color-emerald*
-											*text-color-teal*
-											*text-color-cyan*
-											*text-color-sky*
-											*text-color-blue*
-											*text-color-indigo*
-											*text-color-violet*
-											*text-color-purple*
-											*text-color-fuchsia*
-											*text-color-pink*
-											*text-color-rose*
-
+											;; background colors
+											*bg-color-slate*
+											*bg-color-gray*
+											*bg-color-zinc*
+											*bg-color-neutral*
+											*bg-color-stone*
+											*bg-color-red*
+											*bg-color-orange*
+											*bg-color-amber*
+											*bg-color-yellow*
+											*bg-color-lime*
+											*bg-color-green*
+											*bg-color-emerald*
+											*bg-color-teal*
+											*bg-color-cyan*
+											*bg-color-sky*
+											*bg-color-blue*
+											*bg-color-indigo*
+											*bg-color-violet*
+											*bg-color-purple*
+											*bg-color-fuchsia*
+											*bg-color-pink*
+											*bg-color-rose*
 											))

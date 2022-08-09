@@ -4,15 +4,22 @@
   :license "MIT"
   :depends-on ("cl-css"
                "cl-ppcre"
-               "djula")
+               "djula"
+							 "cl-minify-css")
   :components ((:module "src"
                 :components
-                ((:file "main"
-									:depends-on ("tailwind-layout" "tailwind-spacing" "tailwind-typography" "tailwind-flexbox-grid"))
+                ((:file "main" :depends-on (
+																						"tailwind-layout"
+																						"tailwind-spacing"
+																						"tailwind-typography"
+																						"tailwind-flexbox-grid"
+																						"tailwind-backgrounds"
+																						))
                  (:file "tailwind-layout")
                  (:file "tailwind-spacing")
                  (:file "tailwind-typography")
                  (:file "tailwind-flexbox-grid")
+                 (:file "tailwind-backgrounds")
                  )))
   :description ""
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))
