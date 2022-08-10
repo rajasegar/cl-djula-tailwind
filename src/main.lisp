@@ -76,10 +76,27 @@
 
       (cl-minify-css:minify-css (join-string-list (loop for c in  (get-classnames markup)
                               for key = (assoc c *tailwind* :test #'string=)
-                              when key
-                                collect (cl-css:css (cdr key))))))))
+                              if key
+																collect (cl-css:css (cdr key))
+																else 
+																collect (get-pseudo-class c)
+																												))))))
 
 
+
+(defun get-pseudo-class (str)
+	"Generate class definitions for hover:, focus: and other states"
+	(let (result)
+		(cl-ppcre:do-register-groups
+				(state class)
+				("(hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
+			(let ((classname (concatenate 'string "." state "\\:" class ":" state))
+						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
+
+;; (print (get-pseudo-class "hover:bg-red-400"))
 
 ;; (defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
 ;; (print (get-stylesheet #P"index.html" *template-directory*))
+

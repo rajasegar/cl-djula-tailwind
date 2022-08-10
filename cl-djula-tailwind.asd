@@ -18,9 +18,9 @@
 																						))
                  (:file "tailwind-layout")
                  (:file "tailwind-spacing")
-                 (:file "tailwind-typography")
+                 (:file "tailwind-typography" :depends-on ("tailwind-colors"))
                  (:file "tailwind-flexbox-grid")
-                 (:file "tailwind-backgrounds")
+                 (:file "tailwind-backgrounds" :depends-on ("tailwind-colors"))
                  (:file "tailwind-colors")
                  )))
   :description ""
