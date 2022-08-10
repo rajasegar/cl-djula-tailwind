@@ -14,12 +14,14 @@
 																						"tailwind-typography"
 																						"tailwind-flexbox-grid"
 																						"tailwind-backgrounds"
+																						"tailwind-colors"
 																						))
                  (:file "tailwind-layout")
                  (:file "tailwind-spacing")
                  (:file "tailwind-typography")
                  (:file "tailwind-flexbox-grid")
                  (:file "tailwind-backgrounds")
+                 (:file "tailwind-colors")
                  )))
   :description ""
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))
