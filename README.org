@@ -1,8 +1,41 @@
-* Cl-Djula-Tailwind 
+* cl-djula-tailwind 
+  
+Use [[https://tailwindcss.com][TailwindCSS]] classe in your Djula templates without any JavaScript or Node.js tooling 
 
 ** Usage
+   
+Create a new [[https://github.com/fukamachi/caveman][Caveman]] project
+    
+#+begin_src lisp
+(ql:quickload :caveman2)
+(caveman2:make-project #P"~/quicklisp/local-projects/cl-tw-demo")
+#+end_src
+
+   - Add ~cl-djula-tailwind~ as system dependency
+     
+
+     
+Define a new function called ~render-stylesheet~ in ~src/web.lisp~
+
+#+BEGIN_SRC lisp
+(defun render-stylesheet (template)
+	(setf (getf djula:*default-template-arguments* :tailwind) (cl-djula-tailwind:get-stylesheet template *template-directory*)))
+#+END_SRC
+
+Call this function in your routes with the template name as the argument
+#+BEGIN_SRC lisp
+(defroute "/" ()
+	(render-stylesheet #P"index.html")
+  (render #P"index.html"))
+#+END_SRC
 
 ** Installation
+   You can install it from quicklisp
+   
+#+BEGIN_SRC lisp
+(ql:quickload :cl-djula-tailwind)
+
+#+END_SRC
 
 ** Author
 

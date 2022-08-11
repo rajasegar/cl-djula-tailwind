@@ -67,9 +67,23 @@
 										("z-30" . ((".z-30" :z-index "30")))
 										("z-40" . ((".z-40" :z-index "40")))
 										("z-50" . ((".z-50" :z-index "50")))
-										("z-auto" . ((".z-auto" :z-index "auto")))
+										("z-auto" . ((".z-auto" :z-index "auto")))))
 
-										))
+(defvar *columns* '(
+                    ("columns-1" . ((".columns-1" :columns 1)))
+                    ("columns-2" . ((".columns-2" :columns 2)))
+                    ("columns-3" . ((".columns-3" :columns 3)))
+                    ("columns-4" . ((".columns-4" :columns 4)))
+                    ("columns-5" . ((".columns-5" :columns 5)))
+                    ("columns-6" . ((".columns-6" :columns 6)))
+                    ("columns-7" . ((".columns-7" :columns 7)))
+                    ("columns-8" . ((".columns-8" :columns 8)))
+                    ("columns-9" . ((".columns-9" :columns 9)))
+                    ("columns-10" . ((".columns-10" :columns 10)))
+                    ("columns-11" . ((".columns-11" :columns 11)))
+                    ("columns-12" . ((".columns-12" :columns 12)))
+
+                    ))
 (defvar *layout* (append
 									*aspect-ratio*
 									*display*
