@@ -13,8 +13,13 @@ Create a new [[https://github.com/fukamachi/caveman][Caveman]] project
 
    - Add ~cl-djula-tailwind~ as system dependency
      
-
      
+Add a placeholder for the stylesheet in the default template ~templates/layouts/default.html~
+
+#+BEGIN_SRC html
+<style>{{ tailwind }}</style>
+#+END_SRC
+
 Define a new function called ~render-stylesheet~ in ~src/web.lisp~
 
 #+BEGIN_SRC lisp
