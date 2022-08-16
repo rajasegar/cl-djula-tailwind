@@ -15,6 +15,9 @@
 																						"tailwind-flexbox-grid"
 																						"tailwind-backgrounds"
 																						"tailwind-colors"
+																						"tailwind-sizing"
+																						"tailwind-borders"
+																						"tailwind-effects"
 																						))
                  (:file "tailwind-layout")
                  (:file "tailwind-spacing")
@@ -22,6 +25,9 @@
                  (:file "tailwind-flexbox-grid")
                  (:file "tailwind-backgrounds" :depends-on ("tailwind-colors"))
                  (:file "tailwind-colors")
+                 (:file "tailwind-sizing")
+                 (:file "tailwind-borders")
+                 (:file "tailwind-effects")
                  )))
   :description ""
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))

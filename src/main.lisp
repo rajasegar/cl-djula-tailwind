@@ -3,7 +3,11 @@
    :cl-djula-tailwind.layout
 	 :cl-djula-tailwind.spacing
    :cl-djula-tailwind.typography
-	 :cl-djula-tailwind.backgrounds)
+				:cl-djula-tailwind.backgrounds
+				:cl-djula-tailwind.sizing
+				:cl-djula-tailwind.borders
+				:cl-djula-tailwind.effects
+				)
 	(:export :get-stylesheet))
 
 (in-package :cl-djula-tailwind)
@@ -54,15 +58,18 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
-	;; (print (replace-class-keyword (find-class-attrs markup)))
+	(print (replace-class-keyword (find-class-attrs markup)))
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
 
-(defparameter *tailwind* (append
+(defvar *tailwind* (append
                           *layout*
                           *spacing*
                           *typography*
 													*backgrounds*
+													*sizing*
+													*borders*
+													*effects*
 													))
 ;; (print *tailwind*)
 
@@ -85,7 +92,7 @@
 
 
 (defun get-pseudo-class (str)
-	"Generate class definitions for hover:, focus: and other states"
+	"Generate class definitions for hover: focus: and other states"
 	(let (result)
 		(cl-ppcre:do-register-groups
 				(state class)

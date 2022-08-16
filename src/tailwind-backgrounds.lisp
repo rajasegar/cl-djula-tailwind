@@ -19,6 +19,12 @@
 	(loop for i in colors
 				collect (get-list prefix (car i) (cdr i))))
 
+(defvar *bg-others* '(("bg-inherit" . ((".bg-inherit" :background-color "inherit")))
+											("bg-current" . ((".bg-current" :background-color "currentColor")))
+											("bg-transparent" . ((".bg-transparent" :background-color "transparent")))
+											("bg-black" . ((".bg-black" :background-color "rgb(0 0 0)")))
+											("bg-white" . ((".bg-white" :background-color "rgb(255 255 255)")))))
+
 (defvar *bg-color-slate* (collect-colors *slate-colors* "bg-slate-"))
 (defvar *bg-color-gray* (collect-colors *gray-colors* "bg-gray-"))
 (defvar *bg-color-zinc* (collect-colors *zinc-colors* "bg-zinc-"))
@@ -68,4 +74,6 @@
 											*bg-color-fuchsia*
 											*bg-color-pink*
 											*bg-color-rose*
+
+											*bg-others*
 											))
