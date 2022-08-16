@@ -29,6 +29,18 @@
 											("flex-wrap-reverse" . ((".flex-wrap-reverse" :flex-wrap "wrap-reverse")))
 											("flex-nowrap" . ((".flex-nowrap" :flex-wrap "nowrap")))))
 
+(defvar *flex* '(("flex-1" . ((".flex-1" :flex "1 1 0%")))
+								 ("flex-auto" . ((".flex-auto" :flex "1 1 auto")))
+								 ("flex-initial" . ((".flex-initial" :flex "0 1 auto")))
+								 ("flex-none" . ((".flex-none" :flex "none")))))
+
+(defvar *flex-grow* '(("grow" . ((".grow" :flex-grow "1")))
+											("grow-0" . ((".grow-0" :flex-grow "0")))))
+
+
+(defvar *flex-shrink* '(("shrink" . ((".shrink" :flex-shrink "1")))
+											("shrink-0" . ((".shrink-0" :flex-shrink "0")))))
+
 (defvar *justify-content* '(("justify-start" . ((".justify-start" :justify-content "flex-start")))
 														("justify-end" . ((".justify-end" :justify-content "flex-end")))
 														("justify-center" . ((".justify-center" :justify-content "center")))
@@ -89,6 +101,9 @@
 												*flex-basis*
 												*flex-direction*
 												*flex-wrap*
+												*flex*
+												*flex-grow*
+												*flex-shrink*
 												*justify-content*
 												*justify-items*
 												*justify-self*
