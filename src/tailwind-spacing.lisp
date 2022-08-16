@@ -91,23 +91,9 @@
 
 (defvar *padding* (append *padding-all* *padding-top* *padding-right* *padding-bottom* *padding-left* *padding-horizontal* *padding-vertical*))
 
-(defvar *space-between* '(("space-x-0" .((".space-x-0" :margin-left "0px")))
-													("space-y-0" .((".space-y-0" :margin-top "0px")))
-													("space-x-0.5" .((".space-x-0.5" :margin-left "0.125rem")))
-													("space-y-0.5" .((".space-y-0.5" :margin-top "0.125rem")))
-													("space-x-1" .((".space-x-1" :margin-left "0.25rem")))
-													("space-y-1" .((".space-y-1" :margin-top "0.25rem")))
-													("space-x-1.5" .((".space-x-1.5" :margin-left "0.375rem")))
-													("space-y-1.5" .((".space-y-1.5" :margin-top "0.375rem")))
-													("space-x-2" .((".space-x-2" :margin-left "0.5rem")))
-													("space-y-2" .((".space-y-2" :margin-top "0.5rem")))
-													("space-x-2.5" .((".space-x-2.5" :margin-left "0.625rem")))
-													("space-y-2.5" .((".space-y-2.5" :margin-top "0.625rem")))
-													("space-x-3" .((".space-x-3" :margin-left "0.75rem")))
-													("space-y-3" .((".space-y-3" :margin-top "0.75rem")))
-													("space-x-3.5" .((".space-x-3.5" :margin-left "0.875rem")))
-													("space-y-3.5" .((".space-y-3.5" :margin-top "0.875rem")))
-													("space-x-4" .((".space-x-4" :margin-left "1rem")))
-													("space-y-4" .((".space-y-4" :margin-top "1rem")))))
+(defvar *space-x* (get-single :margin-left "space-x-"))
+(defvar *space-y* (get-single :margin-top "space-y-"))
+
+(defvar *space-between* (append *space-x* *space-y*))
 
 (defvar *spacing* (append *padding* *margin* *space-between*))

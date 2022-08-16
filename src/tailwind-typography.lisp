@@ -5,16 +5,39 @@
 
 (in-package cl-djula-tailwind.typography)
 
-(defvar *font-sizes* '(("text-xl" . ((".text-xl" :font-size "1.25rem" :line-height "1.75rem")))
-                         ("text-2xl" . ((".text-2xl" :font-size "1.5rem" :line-height "2rem")))
-                    ))
+(defvar *font-sizes* '(("text-xs" . ((".text-xs" :font-size "0.75rem" :line-height "1rem")))
+											 ("text-sm" . ((".text-sm" :font-size "0.875rem" :line-height "1.25rem")))
+											 ("text-base" . ((".text-base" :font-size "1rem" :line-height "1.5rem")))
+											 ("text-lg" . ((".text-lg" :font-size "1.125rem" :line-height "1.75rem")))
+											 ("text-xl" . ((".text-xl" :font-size "1.25rem" :line-height "1.75rem")))
+                       ("text-2xl" . ((".text-2xl" :font-size "1.5rem" :line-height "2rem")))
+                       ("text-3xl" . ((".text-3xl" :font-size "1.875rem" :line-height "2.25rem")))
+                       ("text-4xl" . ((".text-4xl" :font-size "2.25rem" :line-height "2.5rem")))
+                       ("text-5xl" . ((".text-5xl" :font-size "3rem" :line-height "1")))
+                       ("text-6xl" . ((".text-6xl" :font-size "3.75rem" :line-height "1")))
+                       ("text-7xl" . ((".text-7xl" :font-size "4.5rem" :line-height "1")))
+                       ("text-8xl" . ((".text-8xl" :font-size "6rem" :line-height "1")))
+                       ("text-9xl" . ((".text-9xl" :font-size "8rem" :line-height "1")))))
 
 
 (defvar *font-styles* '(("italic" . ((".italic" :font-style "italic")))
                          ("non-italic" . ((".non-italic" :font-style "normal")))))
 
-(defvar *font-weights* '(("font-bold" . ((".fond-bold" :font-weight "700")))
-                         ("font-normal" . ((".font-normal" :font-style "400")))))
+(defvar *font-weights* '(("font-thin" . ((".fond-thin" :font-weight "100")))
+												 ("font-extralight" . ((".fond-extralight" :font-weight "200")))
+												 ("font-light" . ((".fond-light" :font-weight "300")))
+                         ("font-normal" . ((".font-normal" :font-weight "400")))
+                         ("font-medium" . ((".font-normal" :font-weight "500")))
+                         ("font-semibold" . ((".font-semibold" :font-weight "600")))
+												 ("font-bold" . ((".fond-bold" :font-weight "700")))
+												 ("font-extrabold" . ((".fond-extrabold" :font-weight "800")))
+												 ("font-black" . ((".fond-black" :font-weight "900")))))
+
+(defvar *font-family* '(
+												("font-sans" . ((".font-sans" :font-family "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"")))
+												("font-serif" . ((".font-serif" :font-family "ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif")))
+												("font-mono" . ((".font-mono" :font-family "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace")))
+												 ))
 
 (defvar *text-color* '(
 											 ("text-inherit" . ((".text-inherit" :color "inherit")))
@@ -65,6 +88,7 @@
 											*font-sizes*
 											*font-styles*
 											*font-weights*
+											*font-family*
 
 											;; text colors
 											*text-color-slate*
