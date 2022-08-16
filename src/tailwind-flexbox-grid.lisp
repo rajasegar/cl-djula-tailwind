@@ -29,8 +29,73 @@
 											("flex-wrap-reverse" . ((".flex-wrap-reverse" :flex-wrap "wrap-reverse")))
 											("flex-nowrap" . ((".flex-nowrap" :flex-wrap "nowrap")))))
 
+(defvar *justify-content* '(("justify-start" . ((".justify-start" :justify-content "flex-start")))
+														("justify-end" . ((".justify-end" :justify-content "flex-end")))
+														("justify-center" . ((".justify-center" :justify-content "center")))
+														("justify-between" . ((".justify-between" :justify-content "space-between")))
+														("justify-around" . ((".justify-around" :justify-content "space-around")))
+														("justify-evenly" . ((".justify-evenly" :justify-content "space-evenly")))))
+
+(defvar *justify-items* '(("justify-items-start" . ((".justify-items-start" :justify-items "start")))
+													("justify-items-end" . ((".justify-items-end" :justify-items "end")))
+													("justify-items-center" . ((".justify-items-center" :justify-items "center")))
+													("justify-items-stretch" . ((".justify-items-stretch" :justify-items "stretch")))))
+
+(defvar *justify-self* '(("justify-self-auto" . ((".justify-self-auto" :justify-self "auto")))
+												 ("justify-self-start" . ((".justify-self-start" :justify-self "start")))
+												 ("justify-self-end" . ((".justify-self-end" :justify-self "end")))
+												 ("justify-self-center" . ((".justify-self-center" :justify-self "center")))
+												 ("justify-self-stretch" . ((".justify-self-stretch" :justify-self "stretch")))))
+
+(defvar *align-content* '(("content-center" . ((".content-center" :align-content "center")))
+													("content-start" . ((".content-start" :align-content "start")))
+													("content-end" . ((".content-end" :align-content "end")))
+													("content-between" . ((".content-between" :align-content "space-between")))
+													("content-around" . ((".content-around" :align-content "space-around")))
+													("content-evenly" . ((".content-evenly" :align-content "space-evenly")))))
+
+(defvar *align-items* '(("items-start" . ((".items-start" :align-items "flex-start")))
+												("items-end" . ((".items-end" :align-items "flex-end")))
+												("items-center" . ((".items-center" :align-items "center")))
+												("items-baseline" . ((".items-baseline" :align-items "baseline")))
+												("items-stretch" . ((".items-stretch" :align-items "stretch")))))
+
+(defvar *align-self* '(("self-auto" . ((".self-auto" :align-self "auto")))
+											 ("self-start" . ((".self-start" :align-self "flex-start")))
+											 ("self-end" . ((".self-end" :align-self "flex-end")))
+											 ("self-center" . ((".self-center" :align-self "center")))
+											 ("self-stretch" . ((".self-stretch" :align-self "stretch")))
+											 ("self-baseline" . ((".self-baseline" :align-self "baseline")))))
+
+(defvar *place-content* '(("place-content-center" . ((".place-content-center" :place-content "center")))
+													("place-content-start" . ((".place-content-start" :place-content "start")))
+													("place-content-end" . ((".place-content-end" :place-content "end")))
+													("place-content-between" . ((".place-content-between" :place-content "space-between")))
+													("place-content-around" . ((".place-content-around" :place-content "space-around")))
+													("place-content-evenly" . ((".place-content-evenly" :place-content "space-evenly")))
+													("place-content-stretch" . ((".place-content-stretch" :place-content "stretch")))))
+(defvar *place-items* '(("place-items-start" . ((".place-items-start" :place-items "start")))
+												("place-items-end" . ((".place-items-end" :place-items "end")))
+												("place-items-center" . ((".place-items-center" :place-items "center")))
+												("place-items-stretch" . ((".place-items-stretch" :place-items "stretch")))))
+
+(defvar *place-self* '(("place-self-auto" . ((".place-self-auto" :place-self "auto")))
+											 ("place-self-start" . ((".place-self-start" :place-self "start")))
+											 ("place-self-end" . ((".place-self-end" :place-self "end")))
+											 ("place-self-center" . ((".place-self-center" :place-self "center")))
+											 ("place-self-stretch" . ((".place-self-stretch" :place-self "stretch")))))
+
 (defvar *flexbox-grid* (append
 												*flex-basis*
 												*flex-direction*
 												*flex-wrap*
+												*justify-content*
+												*justify-items*
+												*justify-self*
+												*align-content*
+												*align-items*
+												*align-self*
+												*place-content*
+												*place-items*
+												*place-self*
 												))
