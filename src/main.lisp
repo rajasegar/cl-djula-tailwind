@@ -7,6 +7,8 @@
 				:cl-djula-tailwind.sizing
 				:cl-djula-tailwind.borders
 				:cl-djula-tailwind.effects
+				:cl-djula-tailwind.flexbox-grid
+				:cl-djula-tailwind.accessibility
 				)
 	(:export :get-stylesheet))
 
@@ -58,7 +60,7 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
-	(print (replace-class-keyword (find-class-attrs markup)))
+	;; (print (replace-class-keyword (find-class-attrs markup)))
    (split-by-one-space (join-string-list (replace-class-keyword (find-class-attrs markup)))))
   
 
@@ -70,26 +72,18 @@
 													*sizing*
 													*borders*
 													*effects*
+													*flexbox-grid*
+													*accessibility*
 													))
-;; (print *tailwind*)
+       
+(defun is-plain-util (c)
+		(assoc c *tailwind* :test #'string=))
 
-(defun get-stylesheet (file dir)
-  "Generate the stylesheet based on tailwind class definitions"
-  (let ((template (parse-template-string file dir)))
-		;; (print template)
+(defun is-pseudo-util (str)
+		(ppcre:all-matches "(hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str))
 
-    (let ((markup (get-markup template)))
-			;; (print markup)
-
-      (cl-minify-css:minify-css (join-string-list (loop for c in  (get-classnames markup)
-                              for key = (assoc c *tailwind* :test #'string=)
-                              if key
-																collect (cl-css:css (cdr key))
-																else 
-																collect (get-pseudo-class c)
-																												))))))
-
-
+(defun is-peer-util (str)
+		(ppcre:all-matches "peer-(checked|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str))
 
 (defun get-pseudo-class (str)
 	"Generate class definitions for hover: focus: and other states"
@@ -102,8 +96,35 @@
 				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
 		(car result)))
 
-;; (print (get-pseudo-class "hover:bg-red-400"))
+(defun get-peer-class (str)
+	"Generate class definitions for peer:{{modifier}} states"
+	(let (result)
+		(cl-ppcre:do-register-groups
+				(state class)
+				("peer-(checked|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
+			(let ((classname (concatenate 'string ".peer:" state " ~ .peer-" state "\\:" class))
+						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
+
+
+(defun get-stylesheet (file dir)
+  "Generate the stylesheet based on tailwind class definitions"
+  (let ((template (parse-template-string file dir)))
+    (let ((markup (get-markup template)))
+			(let ((styles '()))
+				(dolist (c (get-classnames markup))
+					(cond
+						((is-plain-util c) (push (cl-css:css (cdr (is-plain-util c))) styles))
+						((is-pseudo-util c) (push (get-pseudo-class c) styles))
+						((is-peer-util c) (push (get-peer-class c) styles))
+						(t (print c))))
+				(cl-minify-css:minify-css (join-string-list (reverse styles)))))))
+
+;; (print (get-peer-class "peer-checked:font-semibold"))
 
 ;; (defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
 ;; (print (get-stylesheet #P"index.html" *template-directory*))
+
+
 

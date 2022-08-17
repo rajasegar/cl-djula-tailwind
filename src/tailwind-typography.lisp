@@ -35,9 +35,10 @@
 
 (defvar *font-family* '(
 												("font-sans" . ((".font-sans" :font-family "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"")))
-												("font-serif" . ((".font-serif" :font-family "ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif")))
-												("font-mono" . ((".font-mono" :font-family "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace")))
+												("font-serif" . ((".font-serif" :font-family "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif")))
+												("font-mono" . ((".font-mono" :font-family "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace")))
 												 ))
+
 
 (defvar *text-color* '(
 											 ("text-inherit" . ((".text-inherit" :color "inherit")))
@@ -91,6 +92,7 @@
 											*font-family*
 
 											;; text colors
+											*text-color*
 											*text-color-slate*
 											*text-color-gray*
 											*text-color-zinc*

@@ -1,7 +1,8 @@
 (defpackage cl-djula-tailwind.utils
   (:use :cl)
   (:export :get-single
-					 :get-double))
+	 :get-double
+	 :get-quadruple))
 
 (in-package cl-djula-tailwind.utils)
 
@@ -60,4 +61,12 @@
 						 for key = (concatenate 'string prefix unit)
 						 for classname = (concatenate 'string "." prefix unit)
 			collect `(,key . ((,classname ,prop-left ,val ,prop-right ,val)))))
+
+(defun get-quadruple (prop-1 prop-2 prop-3 prop-4 prefix)
+	"Get top, right, bottom and left values"
+	(loop for val in *values*
+						 for unit in *units*
+						 for key = (concatenate 'string prefix unit)
+						 for classname = (concatenate 'string "." prefix unit)
+			collect `(,key . ((,classname ,prop-1 ,val ,prop-2 ,val ,prop-3 ,val ,prop-4 ,val)))))
 

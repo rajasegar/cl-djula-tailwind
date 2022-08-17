@@ -18,9 +18,10 @@
 																						"tailwind-sizing"
 																						"tailwind-borders"
 																						"tailwind-effects"
+																						"tailwind-accessibility"
 																						"utils"
 																						))
-                 (:file "tailwind-layout")
+                 (:file "tailwind-layout" :depends-on ("utils"))
                  (:file "tailwind-spacing")
                  (:file "tailwind-typography" :depends-on ("tailwind-colors"))
                  (:file "tailwind-flexbox-grid")
@@ -29,6 +30,7 @@
                  (:file "tailwind-sizing" :depends-on ("utils"))
                  (:file "tailwind-borders")
                  (:file "tailwind-effects")
+                 (:file "tailwind-accessibility")
                  (:file "utils")
                  )))
   :description ""

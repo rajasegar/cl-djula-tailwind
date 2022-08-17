@@ -75,6 +75,7 @@
 
 
 (defvar *sizing* (append *width*
+												 *height*
 												 *width-percentages*
 												 *width-viewport*
 												 *min-width*

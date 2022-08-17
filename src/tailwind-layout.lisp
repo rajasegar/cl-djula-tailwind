@@ -1,5 +1,6 @@
 (defpackage cl-djula-tailwind.layout
-  (:use :cl)
+  (:use :cl
+				:cl-djula-tailwind.utils)
   (:export :*layout*))
 
 (in-package cl-djula-tailwind.layout)
@@ -96,6 +97,34 @@
                     ("columns-6xl" . ((".columns-6xl" :columns "72rem")))
                     ("columns-7xl" . ((".columns-7xl" :columns "80rem")))))
 
+(defvar *overflow* '(
+										 ("overflow-auto" . ((".overflow-auto" :overflow "auto")))
+										 ("overflow-hidden" . ((".overflow-hidden" :overflow "hidden")))
+										 ("overflow-clip" . ((".overflow-clip" :overflow "clip")))
+										 ("overflow-visible" . ((".overflow-visible" :overflow "visible")))
+										 ("overflow-scroll" . ((".overflow-scroll" :overflow "scroll")))
+										 ("overflow-x-auto" . ((".overflow-x-auto" :overflow-x "auto")))
+										 ("overflow-y-auto" . ((".overflow-y-auto" :overflow-y "auto")))
+										 ("overflow-x-hidden" . ((".overflow-x-hidden" :overflow-x "hidden")))
+										 ("overflow-y-hidden" . ((".overflow-y-hidden" :overflow-y "hidden")))
+										 ("overflow-x-clip" . ((".overflow-x-clip" :overflow-x "clip")))
+										 ("overflow-y-clip" . ((".overflow-y-clip" :overflow-y "clip")))
+										 ("overflow-x-visible" . ((".overflow-x-visible" :overflow-x "visible")))
+										 ("overflow-y-visible" . ((".overflow-y-visible" :overflow-y "visible")))
+										 ("overflow-x-scroll" . ((".overflow-x-scroll" :overflow-x "scroll")))
+										 ("overflow-y-scroll" . ((".overflow-y-scroll" :overflow-y "scroll")))))
+
+
+(defvar *top* (get-single :top "top-"))
+(defvar *right* (get-single :right "right-"))
+(defvar *bottom* (get-single :bottom "bottom-"))
+(defvar *left* (get-single :left "left-"))
+
+
+(defvar *inset-x* (get-double :left :right "inset-x-"))
+(defvar *inset-y* (get-double :top :bottom "inset-y-"))
+(defvar *inset* (get-quadruple :top :right :bottom :left "inset-"))
+
 (defvar *layout* (append
 									*aspect-ratio*
 									*display*
@@ -103,4 +132,14 @@
 									*position*
 									*visibility*
 									*z-index*
+									*overflow*
+
+									*top*
+									*right*
+									*bottom*
+									*left*
+
+									*inset*
+									*inset-x*
+									*inset-y*
 									))
