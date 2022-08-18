@@ -125,6 +125,12 @@
 (defvar *inset-y* (get-double :top :bottom "inset-y-"))
 (defvar *inset* (get-quadruple :top :right :bottom :left "inset-"))
 
+(defvar *object-fit* '(("object-contain" . ((".object-contain" :object-fit "contain")))
+											 ("object-cover" . ((".object-cover" :object-fit "cover")))
+											 ("object-fill" . ((".object-fill" :object-fit "fill")))
+											 ("object-none" . ((".object-none" :object-fit "none")))
+											 ("object-scale-down" . ((".object-scale-down" :object-fit "scale-down")))))
+
 (defvar *layout* (append
 									*aspect-ratio*
 									*display*
@@ -142,4 +148,5 @@
 									*inset*
 									*inset-x*
 									*inset-y*
+									*object-fit*
 									))

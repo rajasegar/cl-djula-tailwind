@@ -29,6 +29,12 @@
 											("w-max" . ((".w-max" :width "max-content")))
 											("w-fit" . ((".w-fit" :width "fit-content")))))
 
+(defvar *height-viewport* '(("h-full" . ((".h-full" :height "100%")))
+											("h-screen" . ((".h-screen" :height "100vh")))
+											("h-min" . ((".h-min" :height "min-content")))
+											("h-max" . ((".h-max" :height "max-content")))
+											("h-fit" . ((".h-fit" :height "fit-content")))))
+
 (defvar *min-width* '(("min-w-0" . ((".min-w-0" :min-width "0px")))
 											("min-w-full" . ((".min-w-full" :min-width "100%")))
 											("min-w-min" . ((".min-w-min" :min-width "min-content")))
@@ -78,6 +84,7 @@
 												 *height*
 												 *width-percentages*
 												 *width-viewport*
+												 *height-viewport*
 												 *min-width*
 												 *min-height*
 												 *max-height*
