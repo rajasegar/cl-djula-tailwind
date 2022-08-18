@@ -63,7 +63,7 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
-	(print (join-string-list (replace-class-keyword (find-class-attrs markup))))
+	;; (print (join-string-list (replace-class-keyword (find-class-attrs markup))))
   (split-by-one-space
 	 (join-string-list
 		(replace-class-keyword

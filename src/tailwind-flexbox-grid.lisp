@@ -1,11 +1,11 @@
 (defpackage cl-djula-tailwind.flexbox-grid
-  (:use :cl)
+  (:use :cl
+				:cl-djula-tailwind.utils)
   (:export :*flexbox-grid*))
 
 (in-package cl-djula-tailwind.flexbox-grid)
 
-(defvar *flex-basis* '(
-											 ("basis-0" . ((".basis-0" :flex-basis "0px")))
+(defvar *flex-basis* '(("basis-0" . ((".basis-0" :flex-basis "0px")))
 											 ("basis-1" . ((".basis-1" :flex-basis "0.25rem")))
 											 ("basis-2" . ((".basis-2" :flex-basis "0.5rem")))
 											 ("basis-3" . ((".basis-3" :flex-basis "0.75rem")))
@@ -97,6 +97,25 @@
 											 ("place-self-center" . ((".place-self-center" :place-self "center")))
 											 ("place-self-stretch" . ((".place-self-stretch" :place-self "stretch")))))
 
+(defvar *grid-template-columns* '(("grid-cols-1" . ((".grid-cols-1" :grid-template-columns "repeat(1, minmax(0, 1fr))")))
+																 ("grid-cols-2" . ((".grid-cols-2" :grid-template-columns "repeat(2, minmax(0, 1fr))")))
+																 ("grid-cols-3" . ((".grid-cols-3" :grid-template-columns "repeat(3, minmax(0, 1fr))")))
+																 ("grid-cols-4" . ((".grid-cols-4" :grid-template-columns "repeat(4, minmax(0, 1fr))")))
+																 ("grid-cols-5" . ((".grid-cols-5" :grid-template-columns "repeat(5, minmax(0, 1fr))")))
+																 ("grid-cols-6" . ((".grid-cols-6" :grid-template-columns "repeat(6, minmax(0, 1fr))")))
+																 ("grid-cols-7" . ((".grid-cols-7" :grid-template-columns "repeat(7, minmax(0, 1fr))")))
+																 ("grid-cols-8" . ((".grid-cols-8" :grid-template-columns "repeat(8, minmax(0, 1fr))")))
+																 ("grid-cols-9" . ((".grid-cols-9" :grid-template-columns "repeat(9, minmax(0, 1fr))")))
+																 ("grid-cols-10" . ((".grid-cols-10" :grid-template-columns "repeat(10, minmax(0, 1fr))")))
+																 ("grid-cols-11" . ((".grid-cols-11" :grid-template-columns "repeat(11, minmax(0, 1fr))")))
+																 ("grid-cols-12" . ((".grid-cols-12" :grid-template-columns "repeat(12, minmax(0, 1fr))")))
+																 ("grid-cols-none" . ((".grid-cols-none" :grid-template-columns "none")))))
+
+
+(defvar *grid-gap* (get-single :gap "gap-"))
+(defvar *grid-gap-x* (get-single :column-gap "gap-x-"))
+(defvar *grid-gap-y* (get-single :row-gap "gap-y-"))
+
 (defvar *flexbox-grid* (append
 												*flex-basis*
 												*flex-direction*
@@ -113,4 +132,9 @@
 												*place-content*
 												*place-items*
 												*place-self*
+
+												*grid-template-columns*
+												*grid-gap*
+												*grid-gap-x*
+												*grid-gap-y*
 												))

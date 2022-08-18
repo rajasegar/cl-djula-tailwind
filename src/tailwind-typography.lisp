@@ -85,6 +85,13 @@
 (defvar *text-color-pink* (collect-colors *pink-colors* "text-pink-"))
 (defvar *text-color-rose* (collect-colors *rose-colors* "text-rose-"))
 
+(defvar *text-align* '(("text-left" . ((".text-left" :text-align "left")))
+											 ("text-center" . ((".text-center" :text-align "center")))
+											 ("text-right" . ((".text-right" :text-align "right")))
+											 ("text-justify" . ((".text-justify" :text-align "justify")))
+											 ("text-start" . ((".text-start" :text-align "start")))
+											 ("text-end" . ((".text-end" :text-align "end")))))
+
 (defvar *typography* (append
 											*font-sizes*
 											*font-styles*
@@ -115,5 +122,7 @@
 											*text-color-fuchsia*
 											*text-color-pink*
 											*text-color-rose*
+
+											*text-align*
 
 											))
