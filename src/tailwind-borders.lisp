@@ -96,6 +96,16 @@
 (defvar *border-color-pink* (collect-colors *pink-colors* "border-pink-"))
 (defvar *border-color-rose* (collect-colors *rose-colors* "border-rose-"))
 
+(defvar *ring-width* '(
+                       ("ring-0" . ((".ring-0" :box-shadow "var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color)")))
+                       ))
+
+(defvar *border-style* '(("border-solid" . ((".border-solid" :border-style "solid")))
+                         ("border-dashed" . ((".border-dashed" :border-style "dashed")))
+                         ("border-dotted" . ((".border-dotted" :border-style "dotted")))
+                         ("border-double" . ((".border-double" :border-style "double")))
+                         ("border-hidden" . ((".border-hidden" :border-style "hidden")))
+                         ("border-none" . ((".border-none" :border-style "none")))))
 
 (defvar *borders* (append *border-radius*
 													*border-width*
@@ -125,4 +135,7 @@
 											*border-color-rose*
 
 											*border-others*
+                      *border-style*
+
+                      *ring-width*
 													))
