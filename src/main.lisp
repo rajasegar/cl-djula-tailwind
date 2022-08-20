@@ -185,7 +185,7 @@
 				;; (print (join-string-list (get-markup template-content)))
 			(push (join-string-list (get-markup template-content)) markup)))
 
-		;; finally push the marku of the root-template (current route template)
+		;; finally push the markup of the root-template (current route template)
 			 (push (join-string-list (get-markup root-template)) markup)
 
 			(let ((styles '()))

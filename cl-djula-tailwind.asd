@@ -34,7 +34,7 @@
                  (:file "tailwind-borders")
                  (:file "tailwind-effects")
                  (:file "tailwind-accessibility")
-                 (:file "tailwind-transforms")
+                 (:file "tailwind-transforms" :depends-on ("utils"))
                  (:file "utils")
                  )))
   :description ""

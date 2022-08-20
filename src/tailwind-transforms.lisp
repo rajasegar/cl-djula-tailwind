@@ -1,5 +1,6 @@
 (defpackage cl-djula-tailwind.transforms
-  (:use :cl)
+  (:use :cl
+        :cl-djula-tailwind.utils)
   (:export :*transforms*))
 
 (in-package cl-djula-tailwind.transforms)
@@ -37,7 +38,22 @@
                              ("origin-left" . ((".origin-left" :transform-origin "left")))
                              ("origin-top-left" . ((".origin-top-left" :transform-origin "top left")))))
 
+(defvar *translate-x* (get-translate :translate "translate-x-" "translateX"))
+(defvar *translate-y* (get-translate :translate "translate-y-" "translateY"))
+(defvar *translate-x-ratios* (get-translate-ratios :translate "translate-x-" "translateX"))
+(defvar *translate-y-ratios* (get-translate-ratios :translate "translate-y-" "translateY"))
+
+(defvar *translate-others* '(("translate-x-full" . ((".translate-x-full" :translate "translateX(100%)")))
+                             ("translate-y-full" . ((".translate-y-full" :translate "translateY(100%)")))))
+
+
 (defvar *transforms*  (append *transform-origin*
                               *skew*
                               *rotate*
+
+                              *translate-others*
+                              *translate-x*
+                              *translate-x-ratios*
+                              *translate-y*
+                              *translate-y-ratios*
                               ))
