@@ -25,7 +25,7 @@
 																						))
                  (:file "tailwind-layout" :depends-on ("utils"))
                  (:file "tailwind-spacing")
-                 (:file "tailwind-typography" :depends-on ("tailwind-colors"))
+                 (:file "tailwind-typography" :depends-on ("tailwind-colors" "utils"))
                  (:file "tailwind-flexbox-grid")
                  (:file "tailwind-backgrounds" :depends-on ("tailwind-colors"))
                  (:file "tailwind-svg" :depends-on ("tailwind-colors"))

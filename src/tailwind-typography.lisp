@@ -1,6 +1,7 @@
 (defpackage cl-djula-tailwind.typography
   (:use :cl
-				:cl-djula-tailwind.colors)
+	 :cl-djula-tailwind.colors
+	 :cl-djula-tailwind.utils)
   (:export :*typography*))
 
 (in-package cl-djula-tailwind.typography)
@@ -92,6 +93,79 @@
 											 ("text-start" . ((".text-start" :text-align "start")))
 											 ("text-end" . ((".text-end" :text-align "end")))))
 
+(defvar *line-height* '(("leading-3" . ((".leading-3" :line-height ".75rem")))
+												("leading-4" . ((".leading-4" :line-height "1rem")))
+												("leading-5" . ((".leading-5" :line-height "1.25rem")))
+												("leading-6" . ((".leading-6" :line-height "1.5rem")))
+												("leading-7" . ((".leading-7" :line-height "1.75rem")))
+												("leading-8" . ((".leading-8" :line-height "2rem")))
+												("leading-9" . ((".leading-9" :line-height "2.25rem")))
+												("leading-10" . ((".leading-10" :line-height "2.5rem")))
+												("leading-none" . ((".leading-none" :line-height "1")))
+												("leading-tight" . ((".leading-tight" :line-height "1.25")))
+												("leading-snug" . ((".leading-snug" :line-height "1.375")))
+												("leading-normal" . ((".leading-normal" :line-height "1.5")))
+												("leading-relaxed" . ((".leading-relaxed" :line-height "1.625")))
+												("leading-loose" . ((".leading-loose" :line-height "2")))))
+
+(defvar *list-style-type* '(("list-none" . (".list-none" :list-style-type "none"))
+														("list-disc" . (".list-disc" :list-style-type "disc"))
+														("list-decimal" . (".list-decimal" :list-style-type "decimal"))))
+
+(defvar *list-style-position* '(("list-inside" . ((".list-inside" :list-style-position "inside")))
+																("list-outside" . ((".list-outside" :list-style-position "outside")))))
+
+(defvar *text-decoration* '(("underline" . ((".underline" :text-decoration-line "underline")))
+														("overline" . ((".overline" :text-decoration-line "overline")))
+														("line-through" . ((".line-through" :text-decoration-line "line-through")))
+														("no-underline" . ((".no-underline" :text-decoration-line "none")))))
+
+(defvar *text-decoration-style* '(("decoration-solid" . ((".decoration-solid" :text-decoration-style "solid")))
+																	("decoration-double" . ((".decoration-double" :text-decoration-style "double")))
+																	("decoration-dotted" . ((".decoration-dotted" :text-decoration-style "dotted")))
+																	("decoration-dashed" . ((".decoration-dashed" :text-decoration-style "dashed")))
+																	("decoration-wavy" . ((".decoration-wavy" :text-decoration-style "wavy")))))
+
+(defvar *text-decoration-thickness* '(("decoration-auto" . ((".decoration-auto" :text-decoration-thickness "auto")))
+																			("decoration-from-font" . ((".decoration-from-font" :text-decoration-thickness "from-font")))
+																			("decoration-0" . ((".decoration-0" :text-decoration-thickness "0px")))
+																			("decoration-1" . ((".decoration-1" :text-decoration-thickness "1px")))
+																			("decoration-2" . ((".decoration-2" :text-decoration-thickness "2px")))
+																			("decoration-4" . ((".decoration-4" :text-decoration-thickness "4px")))
+																			("decoration-8" . ((".decoration-8" :text-decoration-thickness "8px")))))
+
+(defvar *text-transform* '(("uppercase" . ((".uppercase" :text-transform "uppercase")))
+													 ("lowercase" . ((".lowercase" :text-transform "lowercase")))
+													 ("capitalize" . ((".capitalize" :text-transform "capitalize")))
+													 ("normal-case" . ((".normal-case" :text-transform "none")))))
+
+(defvar *text-overflow* '(("truncate" . ((".truncate" :overflow "hidden" :text-overflow "ellipsis" :white-space "no-wrap")))
+													("text-ellipsis" . ((".text-ellipsis" :text-overflow "ellipsis")))
+													("text-clip" . ((".text-clip" :text-overflow "clip")))))
+
+(defvar *text-indent* (get-single :text-indent "indent-"))
+
+(defvar *vertical-align* '(("align-baseline" . ((".align-baseline" :vertical-align "baseline")))
+													("align-top" . ((".align-top" :vertical-align "top")))
+													("align-middle" . ((".align-middle" :vertical-align "middle")))
+													("align-bottom" . ((".align-bottom" :vertical-align "bottom")))
+													("align-text-top" . ((".align-text-top" :vertical-align "text-top")))
+													("align-text-bottom" . ((".align-text-bottom" :vertical-align "text-bottom")))
+													("align-sub" . ((".align-sub" :vertical-align "sub")))
+													("align-super" . ((".align-super" :vertical-align "super")))))
+
+(defvar *whitespace* '(("whitespace-normal" . ((".whitespace-normal" :white-space "normal")))
+											 ("whitespace-nowrap" . ((".whitespace-nowrap" :white-space "nowrap")))
+											 ("whitespace-pre" . ((".whitespace-pre" :white-space "pre")))
+											 ("whitespace-pre-line" . ((".whitespace-pre-line" :white-space "pre-line")))
+											 ("whitespace-pre-wrap" . ((".whitespace-pre-wrap" :white-space "pre-wrap")))))
+
+(defvar *word-break* '(("break-normal" . ((".break-normal" :overflow-wrap "normal" :word-break "normal")))
+											 ("break-words" . ((".break-words" :overflow-wrap "break-word")))
+											 ("break-all" . ((".break-all" :word-break "break-all")))))
+
+(defvar *content* '(("content-none" . ((".content-none" :content "none"))))
+
 (defvar *typography* (append
 											*font-sizes*
 											*font-styles*
@@ -125,4 +199,19 @@
 
 											*text-align*
 
+											*line-height*
+											*list-style-type*
+											*list-style-position*
+											*text-decoration*
+											*text-decoration-style*
+											*text-decoration-thickness*
+											*text-transform*
+											*text-overflow*
+											*text-indent*
+
+											*vertical-align*
+
+											*whitespace*
+											*word-break*
+											*content*
 											))
