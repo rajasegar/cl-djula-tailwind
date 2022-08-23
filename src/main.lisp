@@ -9,7 +9,8 @@
 				:cl-djula-tailwind.effects
 				:cl-djula-tailwind.flexbox-grid
 				:cl-djula-tailwind.accessibility
-				)
+				:cl-djula-tailwind.svg
+				:cl-djula-tailwind.transforms)
 	(:export :get-stylesheet
 	 :is-plain-util
 					 :get-pseudo-class
@@ -85,6 +86,8 @@
 													*effects*
 													*flexbox-grid*
 													*accessibility*
+                          *svg*
+                          *transforms*
 													))
        
 (defun is-plain-util (c)

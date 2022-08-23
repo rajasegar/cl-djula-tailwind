@@ -19,6 +19,8 @@
 																						"tailwind-borders"
 																						"tailwind-effects"
 																						"tailwind-accessibility"
+																						"tailwind-svg"
+																						"tailwind-transforms"
 																						"utils"
 																						))
                  (:file "tailwind-layout" :depends-on ("utils"))
@@ -26,11 +28,13 @@
                  (:file "tailwind-typography" :depends-on ("tailwind-colors"))
                  (:file "tailwind-flexbox-grid")
                  (:file "tailwind-backgrounds" :depends-on ("tailwind-colors"))
+                 (:file "tailwind-svg" :depends-on ("tailwind-colors"))
                  (:file "tailwind-colors")
                  (:file "tailwind-sizing" :depends-on ("utils"))
                  (:file "tailwind-borders")
                  (:file "tailwind-effects")
                  (:file "tailwind-accessibility")
+                 (:file "tailwind-transforms" :depends-on ("utils"))
                  (:file "utils")
                  )))
   :description ""

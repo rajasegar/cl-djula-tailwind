@@ -1,8 +1,11 @@
 (defpackage cl-djula-tailwind.utils
   (:use :cl)
   (:export :get-single
-	 :get-double
-	 :get-quadruple))
+            :get-double
+            :get-quadruple
+            :get-translate
+           :get-percentage-widths
+           :get-translate-ratios))
 
 (in-package cl-djula-tailwind.utils)
 
@@ -70,3 +73,32 @@
 						 for classname = (concatenate 'string "." prefix unit)
 			collect `(,key . ((,classname ,prop-1 ,val ,prop-2 ,val ,prop-3 ,val ,prop-4 ,val)))))
 
+
+(defun get-translate (prop prefix fun)
+	"Get translate x and y utils"
+	(loop for val in *values*
+						 for unit in *units*
+						 for key = (concatenate 'string prefix unit)
+						 for classname = (concatenate 'string "." prefix unit)
+			collect `(,key . ((,classname ,prop ,(concatenate 'string fun "(" val ")"))))))
+
+(defvar *percentages* '("50%" "33.333333%" "66.666666%" "25%" "50%" "75%" "20%" "40%" "60%" "80%" "16.666667%" "33.333333%" "50%" "66.666667%" "83.333333%" "8.333333%" "16.666667%" "25%" "33.333333%" "41.666667%" "50%" "58.333333%" "66.666667%" "75%" "83.333333%" "91.666667%"))
+
+(defvar *ratios* '("1/2" "1/3" "2/3" "1/4" "2/4" "3/4" "1/5" "2/5" "3/5" "4/5" "1/6" "2/6" "3/6" "4/6" "5/6" "1/12"
+												 "2/12" "3/12" "4/12" "5/12" "6/12" "7/12" "8/12" "9/12" "10/12" "11/12"))
+
+(defun get-percentage-widths (prop prefix)
+	"Get percentage width utils"
+	(loop for val in *percentages*
+						 for unit in *ratios*
+						 for key = (concatenate 'string prefix unit)
+						 for classname = (concatenate 'string "." prefix unit)
+			collect `(,key . ((,classname ,prop ,val)))))
+
+(defun get-translate-ratios (prop prefix fun)
+	"Get percentage width utils"
+	(loop for val in *percentages*
+						 for unit in *ratios*
+						 for key = (concatenate 'string prefix unit)
+						 for classname = (concatenate 'string "." prefix unit)
+			collect `(,key . ((,classname ,prop ,(concatenate 'string fun "(" val ")"))))))
