@@ -49,6 +49,40 @@
 (defvar *bg-color-rose* (collect-colors *rose-colors* "bg-rose-"))
 
 
+(defvar  *background-attachment* '(("bg-fixed" . ((".bg-fixed" :background-attachment "fixed")))
+																	 ("bg-local" . ((".bg-local" :background-attachment "local")))
+																	 ("bg-scroll" . ((".bg-scroll" :background-attachment "scroll")))))
+
+(defvar *background-clip* '(("bg-clip-border" . ((".bg-clip-border" :background-clip "border-box")))
+														("bg-clip-padding" . ((".bg-clip-padding" :background-clip "padding-box")))
+														("bg-clip-content" . ((".bg-clip-content" :background-clip "content-box")))
+														("bg-clip-text" . ((".bg-clip-text" :background-clip "text")))))
+
+(defvar *background-origin* '(("bg-origin-border" . ((".bg-origin-border" :background-origin "border-box")))
+															("bg-origin-padding" . ((".bg-origin-padding" :background-origin "padding-box")))
+															("bg-origin-content" . ((".bg-origin-content" :background-origin "content-box")))))
+
+(defvar *background-position* '(("bg-bottom" . ((".bg-bottom" :background-position "bottom")))
+																("bg-center" . ((".bg-center" :background-position "center")))
+																("bg-left" . ((".bg-left" :background-position "left")))
+																("bg-left-bottom" . ((".bg-left-bottom" :background-position "left bottom")))
+																("bg-left-top" . ((".bg-left-top" :background-position "left top")))
+																("bg-right" . ((".bg-right" :background-position "right")))
+																("bg-right-bottom" . ((".bg-right-bottom" :background-position "right bottom")))
+																("bg-right-top" . ((".bg-right-top" :background-position "right top")))
+																("bg-top" . ((".bg-top" :background-position "top")))))
+
+(defvar *background-repeat* '(("bg-repeat" . ((".bg-repeat" :background-repeat "repeat")))
+															("bg-no-repeat" . ((".bg-no-repeat" :background-repeat "no-repeat")))
+															("bg-repeat-x" . ((".bg-repeat-x" :background-repeat "repeat-x")))
+															("bg-repeat-y" . ((".bg-repeat-y" :background-repeat "repeat-y")))
+															("bg-repeat-round" . ((".bg-repeat-round" :background-repeat "round")))
+															("bg-repeat-space" . ((".bg-repeat-space" :background-repeat "space")))))
+
+(defvar *background-size* '(("bg-auto" . ((".bg-auto" :background-size "auto")))
+														("bg-cover" . ((".bg-cover" :background-size "cover")))
+														("bg-contain" . ((".bg-contain" :background-size "contain")))))
+
 (defvar *backgrounds* (append
 
 											;; background colors
@@ -76,4 +110,10 @@
 											*bg-color-rose*
 
 											*bg-others*
+											*background-attachment*
+											*background-clip*
+											*background-origin*
+											*background-position*
+											*background-repeat*
+											*background-size*
 											))
