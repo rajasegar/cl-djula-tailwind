@@ -1,4 +1,10 @@
 * cl-djula-tailwind 
+
+[[https://github.com/rajasegar/cl-djula-tailwind/workflows/CI/badge.svg]]
+[[http://quickdocs.org/badge/cl-djula-tailwind.svg]]
+[[https://img.shields.io/badge/license-MIT-blue.svg]]
+
+
   
 Use [[https://tailwindcss.com][TailwindCSS]] classe in your Djula templates without any JavaScript or Node.js tooling 
 
