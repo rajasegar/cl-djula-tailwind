@@ -10,7 +10,12 @@
 				:cl-djula-tailwind.flexbox-grid
 				:cl-djula-tailwind.accessibility
 				)
-	(:export :get-stylesheet))
+	(:export :get-stylesheet
+	 :is-plain-util
+					 :get-pseudo-class
+	 :get-responsive-class
+					 :get-darkmode-class
+					 :get-peer-class))
 
 (in-package :cl-djula-tailwind)
 
@@ -146,7 +151,7 @@
 	(let (result)
 		(cl-ppcre:do-register-groups
 				(state class)
-				("peer-(checked|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
+				("peer-(checked|invalid|required|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
 			(let ((classname (concatenate 'string ".peer:" state " ~ .peer-" state "\\:" class))
 						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
 				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
@@ -175,14 +180,14 @@
 
 		;; Let get the list of templates first
 		;; Then process each template and collect the markup
-		;; in a single list and pass it to obtain classnames
+		;; in a single list 
 		(dolist (tmplt templates)
 			(let ((template-content (parse-template-string tmplt dir)))
 				;; (print tmplt)
 				;; (print (join-string-list (get-markup template-content)))
 			(push (join-string-list (get-markup template-content)) markup)))
 
-		;; finally push the marku of the root-template (current route template)
+		;; finally push the markup of the root-template (current route template)
 			 (push (join-string-list (get-markup root-template)) markup)
 
 			(let ((styles '()))
@@ -196,10 +201,9 @@
 						(t (print c))))
 				(cl-minify-css:minify-css (join-string-list (reverse styles))))))
 
-;; (print (get-peer-class "peer-checked:font-semibold"))
 
 ;; (defparameter *template-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/templates/"))
+;; (defparameter *tests-directory* (asdf:system-relative-pathname "cl-djula-tailwind" "tests/"))
 ;; (print (get-stylesheet #P"index.html" *template-directory*))
-
 
 
