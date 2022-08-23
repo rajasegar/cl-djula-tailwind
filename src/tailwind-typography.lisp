@@ -164,7 +164,7 @@
 											 ("break-words" . ((".break-words" :overflow-wrap "break-word")))
 											 ("break-all" . ((".break-all" :word-break "break-all")))))
 
-(defvar *content* '(("content-none" . ((".content-none" :content "none"))))
+(defvar *content* '(("content-none" . ((".content-none" :content "none")))))
 
 (defvar *typography* (append
 											*font-sizes*
