@@ -8,8 +8,7 @@
 							 "cl-minify-css")
   :components ((:module "src"
                 :components
-                ((:file "main" :depends-on (
-																						"tailwind-layout"
+                ((:file "main" :depends-on ("tailwind-layout"
 																						"tailwind-spacing"
 																						"tailwind-typography"
 																						"tailwind-flexbox-grid"
@@ -21,6 +20,7 @@
 																						"tailwind-accessibility"
 																						"tailwind-svg"
 																						"tailwind-transforms"
+																						"tailwind-tables"
 																						"utils"
 																						))
                  (:file "tailwind-layout" :depends-on ("utils"))
@@ -35,6 +35,7 @@
                  (:file "tailwind-effects")
                  (:file "tailwind-accessibility")
                  (:file "tailwind-transforms" :depends-on ("utils"))
+                 (:file "tailwind-tables")
                  (:file "utils")
                  )))
   :description ""

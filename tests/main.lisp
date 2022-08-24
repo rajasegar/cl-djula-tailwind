@@ -6,13 +6,9 @@
 
 ;; NOTE: To run this test file, execute `(asdf:test-system :cl-djula-tailwind)' in your Lisp.
 
-(defun get-css (classname)
-	(cl-minify-css:minify-css (cl-css:css (cdr (is-plain-util classname)))))
-
-
 (deftest test-plain-util
   (testing "should give css for mx-2"
-    (ok (string= (get-css "mx-2") ".mx-2{margin-left:0.5rem;margin-right:0.5rem;}"))))
+    (ok (string= (cl-minify-css:minify-css (get-plain-class "mx-2")) ".mx-2{margin-left:0.5rem;margin-right:0.5rem;}"))))
 
 (deftest test-pseudo-util
   (testing "should give css for hover:text-red-500"

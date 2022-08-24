@@ -10,13 +10,14 @@
 				:cl-djula-tailwind.flexbox-grid
 				:cl-djula-tailwind.accessibility
 				:cl-djula-tailwind.svg
-				:cl-djula-tailwind.transforms)
+	 :cl-djula-tailwind.transforms
+	 :cl-djula-tailwind.tables)
 	(:export :get-stylesheet
-	 :is-plain-util
-					 :get-pseudo-class
-	 :get-responsive-class
-					 :get-darkmode-class
-					 :get-peer-class))
+						:get-plain-class
+						:get-pseudo-class
+						:get-responsive-class
+						:get-darkmode-class
+						:get-peer-class))
 
 (in-package :cl-djula-tailwind)
 
@@ -88,6 +89,7 @@
 													*accessibility*
                           *svg*
                           *transforms*
+													*tables*
 													))
        
 (defun is-plain-util (c)
@@ -104,6 +106,10 @@
 
 (defun is-peer-util (str)
 		(ppcre:all-matches "peer-(checked|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str))
+
+(defun get-plain-class (str)
+	"Generate class definitions for simple plain utilities"
+		(cl-css:css (cdr (assoc str *tailwind* :test #'string=))))
 
 (defun get-pseudo-class (str)
 	"Generate class definitions for hover: focus: and other states"
@@ -196,7 +202,8 @@
 			(let ((styles '()))
 				(dolist (c (get-classnames markup))
 					(cond
-						((is-plain-util c) (push (cl-css:css (cdr (is-plain-util c))) styles))
+						;; ((is-plain-util c) (push (cl-css:css (cdr (is-plain-util c))) styles))
+						((is-plain-util c) (push (get-plain-class c) styles))
 						((is-pseudo-util c) (push (get-pseudo-class c) styles))
 						((is-responsive-util c) (push (get-responsive-class c) styles))
 						((is-darkmode-util c) (push (get-darkmode-class c) styles))
