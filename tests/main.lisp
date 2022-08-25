@@ -6,6 +6,7 @@
 
 ;; NOTE: To run this test file, execute `(asdf:test-system :cl-djula-tailwind)' in your Lisp.
 
+
 (deftest test-plain-util
   (testing "should give css for mx-2"
     (ok (string= (cl-minify-css:minify-css (get-plain-class "mx-2")) ".mx-2{margin-left:0.5rem;margin-right:0.5rem;}"))))
@@ -28,5 +29,5 @@
     (ok (string= (get-peer-class "peer-invalid:visible") ".peer:invalid ~ .peer-invalid\\:visible { visibility: visible;  }"))))
 
 (deftest test-invalid-plain-util
-  (testing "should give invalid  for abc"
-    (ng (is-plain-util "abc"))))
+  (testing "should give empty string for invalid util class"
+    (ok (string= (get-plain-class "abc") ""))))

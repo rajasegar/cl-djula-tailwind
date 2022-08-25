@@ -12,6 +12,11 @@
 				:cl-djula-tailwind.svg
 	 :cl-djula-tailwind.transforms
 	 :cl-djula-tailwind.tables)
+  (:import-from :cl-ppcre
+                :all-matches
+                :do-register-groups
+                :all-matches-as-strings
+                :regex-replace-all)
 	(:export :get-stylesheet
 						:get-plain-class
 						:get-pseudo-class
@@ -39,7 +44,7 @@
 (defun find-class-attrs (html)
   "Find the class attribute values"
  (loop for l in html
-         for x = (ppcre:all-matches-as-strings  "class=\"([^\"]*)\"" l) 
+         for x = (all-matches-as-strings  "class=\"([^\"]*)\"" l) 
                 when x
          collect x))
 
@@ -48,8 +53,8 @@
 	(let ((classnames '()))
 	(dolist (line props)
 		(dolist (word line)
-			(let* ((x (ppcre:regex-replace-all "class=" word ""))
-						(y (ppcre:regex-replace-all "\\\"" x "")))
+			(let* ((x (regex-replace-all "class=" word ""))
+						(y (regex-replace-all "\\\"" x "")))
 				(push y classnames))))
 		(reverse classnames)))
   
@@ -70,7 +75,6 @@
 
 (defun get-classnames (markup)
   "Get the list of Tailwind class names as a list"
-	;; (print (join-string-list (replace-class-keyword (find-class-attrs markup))))
   (split-by-one-space
 	 (join-string-list
 		(replace-class-keyword
@@ -96,16 +100,20 @@
 		(assoc c *tailwind* :test #'string=))
 
 (defun is-pseudo-util (str)
-		(ppcre:all-matches "(hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str))
+		(all-matches "(hover|focus|active|disabled):([a-z0-9-]*)" str))
 
 (defun is-darkmode-util (str)
-		(ppcre:all-matches "dark:([a-z0-9-]*)" str))
+		(all-matches "dark:([a-z0-9-]*)" str))
 
 (defun is-responsive-util (str)
-		(ppcre:all-matches "(sm|md|lg|xl|2xl):([a-z0-9-]*)" str))
+		(all-matches "(sm|md|lg|xl|2xl):([a-z0-9-]*)" str))
 
 (defun is-peer-util (str)
-		(ppcre:all-matches "peer-(checked|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str))
+		(all-matches "peer-(checked|hover|focus|active|disabled):([a-z0-9-]*)" str))
+
+(defun form-state-utilp (str)
+  "Is this a form state modifier util"
+  (all-matches "(required|invalid|disable):([a-z0-9-]*)" str))
 
 (defun get-plain-class (str)
 	"Generate class definitions for simple plain utilities"
@@ -114,7 +122,7 @@
 (defun get-pseudo-class (str)
 	"Generate class definitions for hover: focus: and other states"
 	(let (result)
-		(cl-ppcre:do-register-groups
+		(do-register-groups
 				(state class)
 				("(hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
 			(let ((classname (concatenate 'string "." state "\\:" class ":" state))
@@ -125,7 +133,7 @@
 (defun get-darkmode-class (str)
 	"Generate class definitions for darkmode"
 	(let (result)
-		(cl-ppcre:do-register-groups
+		(do-register-groups
 				(state class)
 				("(dark):([a-z0-9-]*)" str)
 			(let ((classname (concatenate 'string "." state "\\:" class))
@@ -146,7 +154,7 @@
 (defun get-responsive-class (str)
 	"Generate class definitions for responsive utility variants sm: md: lg: etc.,"
 	(let (result)
-		(cl-ppcre:do-register-groups
+		(do-register-groups
 				(breakpoint class)
 				("(sm|md|lg|xl|2xl):([a-z0-9-]*)" str)
 			(let ((classname (concatenate 'string "." breakpoint "\\:" class ))
@@ -158,7 +166,7 @@
 (defun get-peer-class (str)
 	"Generate class definitions for peer:{{modifier}} states"
 	(let (result)
-		(cl-ppcre:do-register-groups
+		(do-register-groups
 				(state class)
 				("peer-(checked|invalid|required|hover|focus|active|disabled|focus-within|focus-visible):([a-z0-9-]*)" str)
 			(let ((classname (concatenate 'string ".peer:" state " ~ .peer-" state "\\:" class))
@@ -174,7 +182,7 @@
 			(let ((x (first l))
 						(y (second l)))
 				(when (eq x :unparsed-tag)
-					(cl-ppcre:do-register-groups
+					(do-register-groups
 							(tag template-name)
 							("(extends|include) \"([_a-z\/\.]*)\"" y)
 						(push template-name templates)))
