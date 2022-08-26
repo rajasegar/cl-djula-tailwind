@@ -28,6 +28,14 @@
   (testing "should give css for peer-invalid:visible"
     (ok (string= (get-peer-class "peer-invalid:visible") ".peer:invalid ~ .peer-invalid\\:visible { visibility: visible;  }"))))
 
+(deftest test-form-state-util
+  (testing "should give css for required:text-red-500"
+    (ok (string= (get-form-state-class "required:text-red-500") ".required\\:text-red-500:required { color: #ef4444;  }"))))
+
+(deftest test-child-modifier-util
+  (testing "should give css for first:pt-0"
+    (ok (string= (get-child-modifier-class "first:pt-0") ".first\\:pt-0:first { padding-top: 0px;  }"))))
+
 (deftest test-invalid-plain-util
   (testing "should give empty string for invalid util class"
     (ok (string= (get-plain-class "abc") ""))))

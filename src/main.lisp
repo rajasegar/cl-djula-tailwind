@@ -22,7 +22,9 @@
 						:get-pseudo-class
 						:get-responsive-class
 						:get-darkmode-class
-						:get-peer-class))
+						:get-peer-class
+					 :get-form-state-class
+					 :get-child-modifier-class))
 
 (in-package :cl-djula-tailwind)
 
@@ -111,9 +113,39 @@
 (defun is-peer-util (str)
 		(all-matches "peer-(checked|hover|focus|active|disabled):([a-z0-9-]*)" str))
 
+(defvar *form-state-util-regex* "(required|invalid|disabled):([a-z0-9-]*)")
+
 (defun form-state-utilp (str)
   "Is this a form state modifier util"
-  (all-matches "(required|invalid|disable):([a-z0-9-]*)" str))
+  (all-matches *form-state-util-regex* str))
+
+(defun get-form-state-class (str)
+	"Generate class definitions for required: invalid: and other form states"
+	(let (result)
+		(do-register-groups
+				(state class)
+				(*form-state-util-regex* str)
+			(let ((classname (concatenate 'string "." state "\\:" class ":" state))
+						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
+
+(defvar *child-modifier-regex* "(first|last|odd|even):([a-z0-9-]*)")
+
+(defun child-modifier-utilp (str)
+  "Is this a child modifier util"
+  (all-matches *child-modifier-regex* str))
+
+(defun get-child-modifier-class (str)
+	"Generate class definitions for first: last: and other child modifiers"
+	(let (result)
+		(do-register-groups
+				(state class)
+				(*child-modifier-regex* str)
+			(let ((classname (concatenate 'string "." state "\\:" class ":" state))
+						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
 
 (defun get-plain-class (str)
 	"Generate class definitions for simple plain utilities"
@@ -129,6 +161,7 @@
 						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
 				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
 		(car result)))
+
 
 (defun get-darkmode-class (str)
 	"Generate class definitions for darkmode"
@@ -216,6 +249,8 @@
 						((is-responsive-util c) (push (get-responsive-class c) styles))
 						((is-darkmode-util c) (push (get-darkmode-class c) styles))
 						((is-peer-util c) (push (get-peer-class c) styles))
+						((form-state-utilp c) (push (get-form-state-class c) styles))
+						((child-modifier-utilp c) (push (get-child-modifier-class c) styles))
 						(t (print c))))
 				(cl-minify-css:minify-css (join-string-list (reverse styles))))))
 
