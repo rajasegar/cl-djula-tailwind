@@ -38,7 +38,7 @@
                  (:file "tailwind-tables")
                  (:file "utils")
                  )))
-  :description ""
+  :description "Tailwind classes for Djula templates"
   :in-order-to ((test-op (test-op "cl-djula-tailwind/tests"))))
 
 (defsystem "cl-djula-tailwind/tests"

@@ -207,6 +207,22 @@
 				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
 		(car result)))
 
+(defvar *group-regex* "group-(hover|focus|active):([a-z0-9-]*)")
+
+(defun group-utilp (str)
+  "Is this a group modifier util"
+  (all-matches *group-regex* str))
+
+(defun get-group-class (str)
+	"Generate class definitions for group-*:{{modifier}} states"
+	(let (result)
+		(do-register-groups
+				(state class)
+				(*group-regex* str)
+			(let ((classname (concatenate 'string ".group:" state " ~ .group-" state "\\:" class))
+						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
 
 (defun get-templates (root-template)
 	"Get the list of templates - extends and includes from the root-template"
@@ -251,6 +267,7 @@
 						((is-peer-util c) (push (get-peer-class c) styles))
 						((form-state-utilp c) (push (get-form-state-class c) styles))
 						((child-modifier-utilp c) (push (get-child-modifier-class c) styles))
+						((group-utilp c) (push (get-group-class c) styles))
 						(t (print c))))
 				(cl-minify-css:minify-css (join-string-list (reverse styles))))))
 
