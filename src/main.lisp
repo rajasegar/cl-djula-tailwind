@@ -28,6 +28,25 @@
 
 (in-package :cl-djula-tailwind)
 
+(defvar *util-prop-hash* '(
+													 ("p" . :padding)
+													 ("pt" . :padding-top)
+													 ("pr" . :padding-right)
+													 ("pb" . :padding-bottom)
+													 ("pl" . :padding-left)
+													 ("m" . :margin)
+													 ("mt" . :margin-top)
+													 ("mr" . :margin-right)
+													 ("mb" . :margin-bottom)
+													 ("ml" . :margin-left)
+													 ("h" . :height)
+													 ("min-h" . :min-height)
+													 ("max-h" . :max-height)
+													 ("w" . :width)
+													 ("min-w" . :min-width)
+													 ("max-w" . :max-width)
+													 ))
+
 (defun parse-template-string (path dir)
   "Parse Djula template from the given path"
     (djula::parse-template-string (uiop::read-file-string (merge-pathnames path dir))))
@@ -115,6 +134,7 @@
 
 (defvar *form-state-util-regex* "(required|invalid|disabled):([a-z0-9-]*)")
 
+
 (defun form-state-utilp (str)
   "Is this a form state modifier util"
   (all-matches *form-state-util-regex* str))
@@ -128,6 +148,22 @@
 			(let ((classname (concatenate 'string "." state "\\:" class ":" state))
 						(props (cdr (cadr (assoc class *tailwind* :test #'string=)))))
 				(push (concatenate 'string classname " { " (cl-css:inline-css props) " }") result)))
+		(car result)))
+
+(defvar *arbitrary-value-regex* "([a-z]*)-\\[([a-z0-9-]*)\\]")
+(defun arbitrary-value-utilp (str)
+	"Is this an arbitrary value util"
+	(all-matches *arbitrary-value-regex* str))
+
+(defun get-arbitrary-value-class (str)
+	"Generate class definitions for arbitrary values"
+	(let (result)
+		(do-register-groups
+				(class value)
+				(*arbitrary-value-regex* str)
+			(let ((classname (concatenate 'string "." class "-\\[" value "\\] " ))
+						(props (cdr (assoc class *util-prop-hash* :test #'string=))))
+				(push (concatenate 'string classname " { " (cl-css:inline-css `(,props ,value)) " }") result)))
 		(car result)))
 
 (defvar *child-modifier-regex* "(first|last|odd|even):([a-z0-9-]*)")
@@ -259,7 +295,6 @@
 			(let ((styles '()))
 				(dolist (c (get-classnames markup))
 					(cond
-						;; ((is-plain-util c) (push (cl-css:css (cdr (is-plain-util c))) styles))
 						((is-plain-util c) (push (get-plain-class c) styles))
 						((is-pseudo-util c) (push (get-pseudo-class c) styles))
 						((is-responsive-util c) (push (get-responsive-class c) styles))
@@ -268,6 +303,7 @@
 						((form-state-utilp c) (push (get-form-state-class c) styles))
 						((child-modifier-utilp c) (push (get-child-modifier-class c) styles))
 						((group-utilp c) (push (get-group-class c) styles))
+						((arbitrary-value-utilp c) (push (get-arbitrary-value-class c) styles))
 						(t (print c))))
 				(cl-minify-css:minify-css (join-string-list (reverse styles))))))
 
